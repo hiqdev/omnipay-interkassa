@@ -1,0 +1,53 @@
+{
+    "name": "hiqdev/php-merchant-interkassa",
+    "type": "library",
+    "description": "InterKassa plugin for PHP merchant library",
+    "keywords": [
+        "php",
+        "interkassa",
+        "merchant"
+    ],
+    "homepage": "https://github.com/hiqdev/php-merchant-interkassa",
+    "license": "BSD-3-Clause",
+    "support": {
+        "email": "support@hiqdev.com",
+        "source": "https://github.com/hiqdev/php-merchant-interkassa",
+        "issues": "https://github.com/hiqdev/php-merchant-interkassa/issues",
+        "wiki": "https://github.com/hiqdev/php-merchant-interkassa/wiki",
+        "forum": "http://forum.hiqdev.com/"
+    },
+    "authors": [
+        {
+            "name": "Andrii Vasyliev",
+            "role": "Project lead",
+            "email": "sol@hiqdev.com",
+            "homepage": "http://hipanel.com/"
+        },
+        {
+            "name": "Dmitry Naumenko",
+            "role": "Lead backend developer",
+            "email": "silverfire@hiqdev.com",
+            "homepage": "http://silverfire.me/"
+        },
+        {
+            "name": "Andrey Klochok",
+            "role": "Lead frontend developer",
+            "email": "tafid@hiqdev.com",
+            "homepage": "http://hiqdev.com/"
+        },
+        {
+            "name": "Yuriy Myronchuk",
+            "role": "QA Lead",
+            "email": "bladeroot@hiqdev.com",
+            "homepage": "http://hiqdev.com/"
+        }
+    ],
+    "require": {
+        "hiqdev/php-merchant": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hiqdev\\php\\merchant\\interkassa\\": "src"
+        }
+    }
+}

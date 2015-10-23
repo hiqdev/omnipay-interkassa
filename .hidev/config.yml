@@ -1,0 +1,12 @@
+package:
+    name:           php-merchant-interkassa
+    namespace:      hiqdev\php\merchant\interkassa
+    title:          InterKassa plugin for PHP merchant library
+    type:           library
+    keywords:       php, interkassa, merchant
+    description:    |
+        [InterKassa](https://interkassa.com/) plugin for [PHP merchant library](https://github.com/hiqdev/php-merchant).
+
+require:
+    hiqdev/hidev-config:        "*"
+    hiqdev/hidev-config-php:    "*"
