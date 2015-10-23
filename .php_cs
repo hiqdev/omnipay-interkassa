@@ -6,7 +6,7 @@ InterKassa plugin for PHP merchant library
 @link      https://github.com/hiqdev/php-merchant-interkassa
 @package   php-merchant-interkassa
 @license   BSD-3-Clause
-@copyright Copyright (c) 2015, HiQDev (https://hiqdev.com/)
+@copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
 EOF;
 
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
