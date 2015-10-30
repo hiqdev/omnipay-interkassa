@@ -14,7 +14,7 @@ namespace hiqdev\php\merchant\interkassa;
 class Merchant extends \hiqdev\php\merchant\Merchant
 {
     protected static $_defaults = [
-        'name'        => 'interkassa',
+        'system'      => 'interkassa',
         'label'       => 'InterKassa',
         'actionUrl'   => 'https://sci.interkassa.com/',
         'confirmText' => 'OK',
