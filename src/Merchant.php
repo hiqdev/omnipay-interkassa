@@ -32,7 +32,7 @@ class Merchant extends \hiqdev\php\merchant\Merchant
 
     public function getPaymentId()
     {
-        return (strpos($this->username,'@') === false ? $this->username : substr($this->username, 0, strpos($this->username)+1)) .'_'. $this->uniqId,
+        return (strpos($this->username,'@') === false ? $this->username : substr($this->username, 0, strpos($this->username)+1)) .'_'. $this->uniqId;
     }
 
     public function getBaggageFields()
