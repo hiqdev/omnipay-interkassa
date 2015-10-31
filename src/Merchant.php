@@ -88,7 +88,7 @@ class Merchant extends \hiqdev\php\merchant\Merchant
         }
         unset($iks['ik_sign']);
         foreach ($iks as $k=>$v) if (substr($k,0,3)!='ik_') unset($iks[$k]);
-        array_push($iks, $this->secret);
+        array_push($iks, $this->_secret);
         ksort($iks, SORT_STRING);
         $hash =  base64_encode(md5(implode(':',$iks), true));
         if ($hash != strtolower($data['ik_sign'])) {
@@ -114,7 +114,7 @@ class Merchant extends \hiqdev\php\merchant\Merchant
         }
         unset($iks['ik_sign_hash'], $iks['ik_payment_desc'], $iks['ik_payment_timestamp']);
         foreach ($iks as $k=>$v) if (substr($k,0,3)!='ik_') unset($iks[$k]);
-        array_push($iks, $this->secret);
+        array_push($iks, $this->_secret);
         $hash = md5(implode(':', $iks));
         if ($hash != strtolower($data['ik_sign_hash'])) {
             return 'Wrong hash';
