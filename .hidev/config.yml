@@ -1,9 +1,10 @@
 package:
     name:           omnipay-interkassa
     namespace:      Omnipay\InterKassa
-    header:         Omnipay: InterKassa
+    headline:       Omnipay: InterKassa
     title:          InterKassa driver for the Omnipay PHP payment processing library
     type:           library
+    license:        MIT
     keywords:       php, omnipay, interkassa, merchant, payment
     description:    |
         [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment

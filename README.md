@@ -52,7 +52,7 @@ or better yet, fork the library and submit a pull request.
 
 ## License
 
-This project is released under the terms of the BSD-3-Clause [license](https://github.com/hiqdev/omnipay-interkassa/blob/master/LICENSE).
-Read more [here](http://choosealicense.com/licenses/bsd-3-clause).
+This project is released under the terms of the MIT [license](https://github.com/hiqdev/omnipay-interkassa/blob/master/LICENSE).
+Read more [here](http://choosealicense.com/licenses/mit).
 
 Copyright © 2015, HiQDev (http://hiqdev.com/)

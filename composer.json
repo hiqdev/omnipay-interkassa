@@ -10,7 +10,7 @@
         "payment"
     ],
     "homepage": "https://github.com/hiqdev/omnipay-interkassa",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "support": {
         "email": "support@hiqdev.com",
         "source": "https://github.com/hiqdev/omnipay-interkassa",
