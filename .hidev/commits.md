@@ -4,6 +4,7 @@ hiqdev/omnipay-interkassa commits history
 ## Under development
 
 - Redone to 'omnipay-interkassa'
+    - 3756a75 2015-11-06 changed license to MIT (sol@hiqdev.com)
     - ef0ecc6 2015-11-06 redoing to omnipay-interkassa (sol@hiqdev.com)
 - Added basics
     - b075280 2015-10-31 fixed '_secret' <- 'secret' (sol@hiqdev.com)
