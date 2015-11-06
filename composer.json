@@ -1,19 +1,21 @@
 {
-    "name": "hiqdev/php-merchant-interkassa",
+    "name": "hiqdev/omnipay-interkassa",
     "type": "library",
-    "description": "InterKassa plugin for PHP merchant library",
+    "description": "InterKassa driver for the Omnipay PHP payment processing library",
     "keywords": [
         "php",
+        "omnipay",
         "interkassa",
-        "merchant"
+        "merchant",
+        "payment"
     ],
-    "homepage": "https://github.com/hiqdev/php-merchant-interkassa",
+    "homepage": "https://github.com/hiqdev/omnipay-interkassa",
     "license": "BSD-3-Clause",
     "support": {
         "email": "support@hiqdev.com",
-        "source": "https://github.com/hiqdev/php-merchant-interkassa",
-        "issues": "https://github.com/hiqdev/php-merchant-interkassa/issues",
-        "wiki": "https://github.com/hiqdev/php-merchant-interkassa/wiki",
+        "source": "https://github.com/hiqdev/omnipay-interkassa",
+        "issues": "https://github.com/hiqdev/omnipay-interkassa/issues",
+        "wiki": "https://github.com/hiqdev/omnipay-interkassa/wiki",
         "forum": "http://forum.hiqdev.com/"
     },
     "authors": [
@@ -43,11 +45,11 @@
         }
     ],
     "require": {
-        "hiqdev/php-merchant": "*"
+        "omnipay/common": "~2.3"
     },
     "autoload": {
         "psr-4": {
-            "hiqdev\\php\\merchant\\interkassa\\": "src"
+            "Omnipay\\InterKassa\\": "src"
         }
     }
 }

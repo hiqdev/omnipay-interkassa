@@ -1,11 +1,12 @@
 package:
-    name:           php-merchant-interkassa
-    namespace:      hiqdev\php\merchant\interkassa
-    title:          InterKassa plugin for PHP merchant library
+    name:           omnipay-interkassa
+    namespace:      Omnipay\InterKassa
+    title:          InterKassa driver for the Omnipay PHP payment processing library
     type:           library
-    keywords:       php, interkassa, merchant
+    keywords:       php, omnipay, interkassa, merchant, payment
     description:    |
-        [InterKassa](https://interkassa.com/) plugin for [PHP merchant library](https://github.com/hiqdev/php-merchant).
+        [InterKassa](http://interkassa.com/) driver for the
+        [Omnipay](http://omnipay.thephpleague.com/) PHP payment processing library.
 
 require:
     hiqdev/hidev-config:        "*"

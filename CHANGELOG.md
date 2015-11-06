@@ -1,5 +1,5 @@
-hiqdev/php-merchant-interkassa changelog
-----------------------------------------
+hiqdev/omnipay-interkassa changelog
+-----------------------------------
 
 ## Under development
 
