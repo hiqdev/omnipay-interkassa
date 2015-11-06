@@ -9,7 +9,6 @@ Omnipay: InterKassa
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+.
-
 This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
 
 ## Installation
