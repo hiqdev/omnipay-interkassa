@@ -1,12 +1,16 @@
-InterKassa driver for the Omnipay PHP payment processing library
-================================================================
+Omnipay: InterKassa
+===================
 
-[InterKassa](http://interkassa.com/) driver for the
-[Omnipay](http://omnipay.thephpleague.com/) PHP payment processing library.
+**InterKassa driver for the Omnipay PHP payment processing library**
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](//packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](//packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master)
+
+[Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
+processing library for PHP 5.3+.
+
+This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
 
 ## Installation
 
