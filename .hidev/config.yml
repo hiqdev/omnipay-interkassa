@@ -10,7 +10,6 @@ package:
         processing library for PHP 5.3+.
         This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
 
-
 require:
     hiqdev/hidev-config:        "*"
     hiqdev/hidev-config-php:    "*"
