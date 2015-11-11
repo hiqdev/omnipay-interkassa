@@ -5,7 +5,7 @@
  *
  * @link      https://github.com/hiqdev/omnipay-interkassa
  * @package   omnipay-interkassa
- * @license   BSD-3-Clause
+ * @license   MIT
  * @copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
  */
 
