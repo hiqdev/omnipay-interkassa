@@ -3,8 +3,9 @@ hiqdev/omnipay-interkassa commits history
 
 ## Under development
 
-    - d18d6ea 2015-11-11 + Omnipay\interkassa namespace (sol@hiqdev.com)
 - Redone to 'omnipay-interkassa'
+    - c61f3f6 2015-11-11 - Omnipay/interkassa namespace (sol@hiqdev.com)
+    - d18d6ea 2015-11-11 + Omnipay\interkassa namespace (sol@hiqdev.com)
     - 3756a75 2015-11-06 changed license to MIT (sol@hiqdev.com)
     - ef0ecc6 2015-11-06 redoing to omnipay-interkassa (sol@hiqdev.com)
 - Added basics
