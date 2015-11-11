@@ -49,8 +49,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Omnipay\\InterKassa\\": "src",
-            "Omnipay\\interkassa\\": "src"
+            "Omnipay\\InterKassa\\": "src"
         }
     }
 }
