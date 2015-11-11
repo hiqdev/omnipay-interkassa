@@ -27,44 +27,27 @@ class PurchaseRequest extends AbstractRequest
     {
         $this->validate(
             'checkoutId',
-            'amount',
-            'currency',
-            'description',
-            'transactionId',
-            'returnUrl',
-            'cancelUrl',
-            'notifyUrl'
+            'amount', 'currency', 'description', 'transactionId',
+            'returnUrl', 'cancelUrl', 'notifyUrl'
         );
 
         return $this->isVersion2() ? $this->getDataVersion2() : $this->getDataVersion1();
-
-        return [
-            'LMI_PAYEE_PURSE'         => $this->getMerchantPurse(),
-            'LMI_PAYMENT_AMOUNT'      => $this->getAmount(),
-            'LMI_PAYMENT_NO'          => $this->getTransactionId(),
-            'LMI_PAYMENT_DESC_BASE64' => base64_encode($this->getDescription()),
-            'LMI_RESULT_URL'          => $this->getNotifyUrl(),
-            'LMI_SUCCESS_URL'         => $this->getReturnUrl(),
-            'LMI_FAIL_URL'            => $this->getCancelUrl(),
-            'LMI_SUCCESS_METHOD'      => '0',
-            'LMI_FAIL_METHOD'         => '0',
-        ];
     }
 
     public function getDataVersion1()
     {
         return [
-            'ik_co_id' => $this->getCheckoutId(),
-            'ik_am'    => $this->getAmount(),
-            'ik_pm_no' => $this->getTransactionId(),
-            'ik_desc'  => $this->getDescription(),
-            'ik_cur'   => $this->getCurrency(),
-            'ik_pnd_u' => $this->getNotifyUrl(),
-            'ik_suc_u' => $this->getReturnUrl(),
-            'ik_fal_u' => $this->getCancelUrl(),
-            'ik_pnd_m' => 'POST',
-            'ik_suc_m' => 'GET',
-            'ik_fal_m' => 'GET',
+            'ik_co_id'          => $this->getCheckoutId(),
+            'ik_am'             => $this->getAmount(),
+            'ik_pm_no'          => $this->getTransactionId(),
+            'ik_desc'           => $this->getDescription(),
+            'ik_cur'            => $this->getCurrency(),
+            'ik_pnd_u'          => $this->getNotifyUrl(),
+            'ik_suc_u'          => $this->getReturnUrl(),
+            'ik_fal_u'          => $this->getCancelUrl(),
+            'ik_pnd_m'          => 'POST',
+            'ik_suc_m'          => 'GET',
+            'ik_fal_m'          => 'GET',
         ];
     }
 
