@@ -3,8 +3,8 @@ Omnipay: InterKassa
 
 **InterKassa driver for the Omnipay PHP payment processing library**
 
-[![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](//packagist.org/packages/hiqdev/omnipay-interkassa)
-[![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](//packagist.org/packages/hiqdev/omnipay-interkassa)
+[![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
+[![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
@@ -52,7 +52,7 @@ or better yet, fork the library and submit a pull request.
 
 ## License
 
-This project is released under the terms of the MIT [license](https://github.com/hiqdev/omnipay-interkassa/blob/master/LICENSE).
+This project is released under the terms of the MIT [license](LICENSE).
 Read more [here](http://choosealicense.com/licenses/mit).
 
 Copyright © 2015, HiQDev (http://hiqdev.com/)
