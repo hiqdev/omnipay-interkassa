@@ -5,6 +5,7 @@ Omnipay: InterKassa
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
+[![Build Status](https://img.shields.io/travis/hiqdev/omnipay-interkassa.svg)](https://travis-ci.org/hiqdev/omnipay-interkassa)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
@@ -17,7 +18,7 @@ The preferred way to install this library is through [composer](http://getcompos
 
 Either run
 
-```
+```sh
 php composer.phar require "hiqdev/omnipay-interkassa"
 ```
 
