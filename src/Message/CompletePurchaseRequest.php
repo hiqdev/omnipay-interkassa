@@ -23,9 +23,7 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate(
-            'secretKey'
-        );
+        $this->validate('secretKey');
 
         $res = [];
         foreach ($this->httpRequest->request->all() as $k => $v) {

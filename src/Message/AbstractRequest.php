@@ -16,6 +16,9 @@ namespace Omnipay\InterKassa\Message;
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    /**
+     * {@inheritdoc}
+     */
     protected $zeroAmountAllowed = false;
 
     protected $endpoint = 'https://sci.interkassa.com/';
@@ -62,5 +65,69 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function setSecretKey($key)
     {
         return $this->setParameter('secretKey', $key);
+    }
+
+    /**
+     * Get the method for success return
+     *
+     * @return mixed
+     */
+    public function getReturnMethod()
+    {
+        return $this->getParameter('returnMethod');
+    }
+
+    /**
+     * Sets the method for success return
+     *
+     * @param $returnMethod
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setReturnMethod($returnMethod)
+    {
+        return $this->setParameter('returnMethod', $returnMethod);
+    }
+
+    /**
+     * Get the method for canceled payment return
+     *
+     * @return mixed
+     */
+    public function getCancelMethod()
+    {
+        return $this->getParameter('returnMethod');
+    }
+
+    /**
+     * Sets the method for canceled payment return
+     *
+     * @param $cancelMethod
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+
+    public function setCancelMethod($cancelMethod)
+    {
+        return $this->setParameter('cancelMethod', $cancelMethod);
+    }
+
+    /**
+     * Get the method for request notify
+     *
+     * @return mixed
+     */
+    public function getNotifyMethod()
+    {
+        return $this->getParameter('notifyMethod');
+    }
+
+    /**
+     * Sets the method for request notify
+     *
+     * @param $notifyMethod
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    public function setNotifyMethod($notifyMethod)
+    {
+        return $this->setParameter('notifyMethod', $notifyMethod);
     }
 }

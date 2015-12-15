@@ -11,52 +11,90 @@
 
 namespace Omnipay\InterKassa\Message;
 
+/**
+ * Class PurchaseRequest
+ * @package Omnipay\InterKassa\Message
+ */
 class PurchaseRequest extends AbstractRequest
 {
+    /**
+     * Whether the request is designed for API v2
+     * @return boolean
+     */
     public function isVersion2()
     {
         return !strpos($this->getCheckoutId(), '-');
     }
 
+    /**
+     * @return string
+     */
     public function getBaggageFields()
     {
-        return $this->currency . ' ' . $this->username;
+        return $this->getCurrency() . ' ' . $this->username;
     }
 
+    /**
+     * {@inheridoc}
+     * @see getDataVersion1
+     * @see getDataVersion2
+     */
     public function getData()
     {
-        $this->validate(
-            'checkoutId',
-            'amount', 'currency', 'description', 'transactionId',
-            'returnUrl', 'cancelUrl', 'notifyUrl'
-        );
+        $this->validate('checkoutId', 'amount', 'currency', 'description', 'transactionId');
 
         return $this->isVersion2() ? $this->getDataVersion2() : $this->getDataVersion1();
     }
 
-    public function getDataVersion1()
+    /**
+     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function getDataVersion2()
     {
-        return [
+        $return = [
             'ik_co_id'          => $this->getCheckoutId(),
             'ik_am'             => $this->getAmount(),
             'ik_pm_no'          => $this->getTransactionId(),
             'ik_desc'           => $this->getDescription(),
             'ik_cur'            => $this->getCurrency(),
-            'ik_pnd_u'          => $this->getNotifyUrl(),
-            'ik_suc_u'          => $this->getReturnUrl(),
-            'ik_fal_u'          => $this->getCancelUrl(),
-            'ik_pnd_m'          => 'POST',
-            'ik_suc_m'          => 'GET',
-            'ik_fal_m'          => 'GET',
         ];
+
+        if ($ik_pnd_u = $this->getReturnUrl()) {
+            $return['ik_pnd_u'] = $ik_pnd_u;
+            $return['ik_pnd_m'] = $this->getReturnMethod();
+        }
+
+        if ($ik_suc_u = $this->getReturnUrl()) {
+            $return['ik_suc_u'] = $ik_suc_u;
+            $return['ik_suc_m'] = $this->getReturnMethod();
+        }
+
+        if ($ik_fal_u = $this->getCancelUrl()) {
+            $return['ik_fal_u'] = $ik_fal_u;
+            $return['ik_fal_m'] = $this->getCancelMethod();
+        }
+
+        if ($ik_ia_u = $this->getNotifyUrl()) {
+            $return['ik_ia_u'] = $ik_ia_u;
+            $return['ik_ia_m'] = $this->getNotifyMethod();
+        }
+
+        return $return;
     }
 
-    public function getDataVersion2()
+    /**
+     * Returns data array designed for API v1
+     *
+     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
+     */
+    public function getDataVersion1()
     {
         return [
             'ik_shop_id'        => $this->getCheckoutId(),
             'ik_payment_amount' => $this->getAmount(),
-            'ik_payment_id'     => $this->transactionId(),
+            'ik_payment_id'     => $this->getTransactionId(),
             'ik_payment_desc'   => $this->getDescription(),
             'ik_baggage_fields' => $this->getBaggageFields(),
             'ik_status_url'     => $this->getNotifyUrl(),
@@ -68,6 +106,11 @@ class PurchaseRequest extends AbstractRequest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     * @param mixed $data
+     * @return PurchaseResponse
+     */
     public function sendData($data)
     {
         return $this->response = new PurchaseResponse($this, $data);
