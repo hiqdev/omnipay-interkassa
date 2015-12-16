@@ -57,8 +57,7 @@ class Gateway extends AbstractGateway
     /**
      * Set the unified purse.
      *
-     * @param string $purse merchant purse
-     *
+     * @param $value
      * @return self
      */
     public function setPurse($value)
@@ -117,7 +116,13 @@ class Gateway extends AbstractGateway
      */
     public function purchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\InterKassa\Message\PurchaseRequest', $parameters);
+        if ($this->isOldApi()) {
+            $requestClass = '\Omnipay\InterKassa\Message\OldPurchaseRequest';
+        } else {
+            $requestClass = '\Omnipay\InterKassa\Message\PurchaseRequest';
+        }
+
+        return $this->createRequest($requestClass, $parameters);
     }
 
     /**
@@ -127,6 +132,21 @@ class Gateway extends AbstractGateway
      */
     public function completePurchase(array $parameters = [])
     {
-        return $this->createRequest('\Omnipay\InterKassa\Message\CompletePurchaseRequest', $parameters);
+        if ($this->isOldApi()) {
+            $requestClass = '\Omnipay\InterKassa\Message\OldCompletePurchaseRequest';
+        } else {
+            $requestClass = '\Omnipay\InterKassa\Message\CompletePurchaseRequest';
+        }
+
+        return $this->createRequest($requestClass, $parameters);
+    }
+
+    /**
+     * Whether the request is designed for API v2
+     * @return boolean
+     */
+    public function isOldApi()
+    {
+        return strpos($this->getPurse(), '-');
     }
 }

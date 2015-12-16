@@ -21,6 +21,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     protected $zeroAmountAllowed = false;
 
+    /**
+     * @var string
+     */
     protected $endpoint = 'https://sci.interkassa.com/';
 
     /**
