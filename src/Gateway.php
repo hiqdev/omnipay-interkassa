@@ -112,7 +112,7 @@ class Gateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\InterKassa\Message\PurchaseRequest
+     * @return \Omnipay\InterKassa\Message\PurchaseRequest|\Omnipay\InterKassa\Message\OldPurchaseRequest
      */
     public function purchase(array $parameters = [])
     {
@@ -128,7 +128,7 @@ class Gateway extends AbstractGateway
     /**
      * @param array $parameters
      *
-     * @return \Omnipay\InterKassa\Message\CompletePurchaseRequest
+     * @return \Omnipay\InterKassa\Message\CompletePurchaseRequest|\Omnipay\InterKassa\Message\OldCompletePurchaseRequest
      */
     public function completePurchase(array $parameters = [])
     {

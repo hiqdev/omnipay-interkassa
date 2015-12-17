@@ -42,22 +42,44 @@ class PurchaseRequest extends AbstractRequest
 
         if ($ik_pnd_u = $this->getReturnUrl()) {
             $return['ik_pnd_u'] = $ik_pnd_u;
-            $return['ik_pnd_m'] = $this->getReturnMethod();
+            
+            if ($ik_pnd_m = $this->getReturnMethod()) {
+                $return['ik_pnd_m'] = $ik_pnd_m;
+            }
         }
 
         if ($ik_suc_u = $this->getReturnUrl()) {
             $return['ik_suc_u'] = $ik_suc_u;
-            $return['ik_suc_m'] = $this->getReturnMethod();
+
+            if ($ik_suc_m = $this->getReturnMethod()) {
+                $return['ik_suc_m'] = $ik_suc_m;
+            }
         }
 
         if ($ik_fal_u = $this->getCancelUrl()) {
             $return['ik_fal_u'] = $ik_fal_u;
-            $return['ik_fal_m'] = $this->getCancelMethod();
+
+            if ($ik_fal_m = $this->getCancelMethod()) {
+                $return['ik_fal_m'] = $ik_fal_m;
+            }
         }
 
         if ($ik_ia_u = $this->getNotifyUrl()) {
             $return['ik_ia_u'] = $ik_ia_u;
-            $return['ik_ia_m'] = $this->getNotifyMethod();
+
+            if ($ik_ia_m = $this->getNotifyMethod()) {
+                $return['ik_ia_m'] = $ik_ia_m;
+            }
+        }
+
+        foreach ($this->getParameters() as $key => $parameter) {
+            if (strpos($key, 'ik_') === 0) {
+                $return[$key] = $parameter;
+            }
+        }
+
+        if ($this->getSecretKey()) {
+            $return['ik_sign'] = $this->calculateSign($return);
         }
 
         return $return;

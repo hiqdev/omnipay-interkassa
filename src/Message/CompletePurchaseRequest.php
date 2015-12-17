@@ -11,28 +11,33 @@
 
 namespace Omnipay\InterKassa\Message;
 
+use Omnipay\Common\Exception\InvalidResponseException;
+
 /**
- * InterKassa Complete Purchase Request.
+ * InterKassa Complete Purchase Request
+ *
+ * @package Omnipay\InterKassa\Message
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
     /**
      * Get the data for this request.
-     *
      * @return array request data
+     * @throws InvalidResponseException
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData()
     {
         $this->validate('secretKey');
 
-        $res = [];
-        foreach ($this->httpRequest->request->all() as $k => $v) {
-            if (substr($k, 0, 3) === 'ik_') {
-                $res[$k] = $v;
+        $result = [];
+        foreach ($this->httpRequest->request->all() as $key => $parameter) {
+            if (strpos($key, 'ik_') === 0) {
+                $result[$key] = $parameter;
             }
         }
 
-        return $res;
+        return $result;
     }
 
     /**

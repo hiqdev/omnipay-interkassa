@@ -12,22 +12,16 @@
 namespace Omnipay\InterKassa\Message;
 
 use Omnipay\Common\Exception\InvalidResponseException;
-use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\RequestInterface;
 
 /**
  * InterKassa Complete Purchase Response
+ * Implements response for APIv1
  *
  * @package Omnipay\InterKassa\Message
  */
-class CompletePurchaseResponse extends AbstractResponse
+class OldCompletePurchaseResponse extends CompletePurchaseResponse
 {
-    /**
-     * {@inheritdoc}
-     * @var CompletePurchaseRequest
-     */
-    public $request;
-
     /**
      * {@inheritdoc}
      */
@@ -65,11 +59,11 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getSign()
     {
-        return $this->data['ik_sign'];
+        return $this->data['ik_sign_hash'];
     }
 
     /**
@@ -123,11 +117,7 @@ class CompletePurchaseResponse extends AbstractResponse
     /**
      * The state of the payment.
      * Possible results:
-     *  - `new`: newly created payment
-     *  - `waitAccept`: waits for the payment
-     *  - `process`: the payment is being processed
      *  - `success`: the payment processed successfully
-     *  - `canceled`: the payment have been canceled
      *  - `fail`: the payment failed
      *
      * @return string
@@ -135,6 +125,6 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getState()
     {
-        return $this->data['ik_inv_st'];
+        return $this->data['ik_payment_state'];
     }
 }

@@ -133,4 +133,20 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         return $this->setParameter('notifyMethod', $notifyMethod);
     }
+
+    /**
+     * Calculates sign for the $data
+     *
+     * @param array $data
+     * @return string
+     */
+    public function calculateSign($data)
+    {
+        unset($data['ik_sign']);
+        ksort($data, SORT_STRING);
+        array_push($data, $this->getSecretKey());
+        $signString = implode(':', $data);
+        $sign = base64_encode(hash('sha256', $signString, true));
+        return $sign;
+    }
 }
