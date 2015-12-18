@@ -121,6 +121,14 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
+     * @return string the payment method inside a gateway (Visa, WebMoney, etc)
+     */
+    public function getPayer()
+    {
+        return $this->data['ik_pw_via'];
+    }
+
+    /**
      * The state of the payment.
      * Possible results:
      *  - `new`: newly created payment

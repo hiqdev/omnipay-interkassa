@@ -79,6 +79,14 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getPayer()
+    {
+        return $this->data['ik_paysystem_alias'];
+    }
+
+    /**
      * The time of request processing
      *
      * @return string
