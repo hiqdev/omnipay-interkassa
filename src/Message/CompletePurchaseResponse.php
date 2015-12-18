@@ -35,9 +35,6 @@ class CompletePurchaseResponse extends AbstractResponse
     {
         parent::__construct($request, $data);
 
-        $sign = $this->getSign();
-        $calc = $this->request->calculateSign($this->data);
-
         if ($this->getSign() !== $this->request->calculateSign($this->data)) {
             throw new InvalidResponseException('Failed to validate sign');
         }
@@ -120,7 +117,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTime()
     {
-        return $this->data['ik_inv_prc'];
+        return strtotime($this->data['ik_inv_prc'] . ' Europe/Moscow');
     }
 
     /**

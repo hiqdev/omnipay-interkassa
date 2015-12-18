@@ -23,39 +23,13 @@ use Omnipay\Common\Message\RequestInterface;
 class OldCompletePurchaseResponse extends CompletePurchaseResponse
 {
     /**
-     * {@inheritdoc}
-     */
-    public function __construct(RequestInterface $request, $data)
-    {
-        parent::__construct($request, $data);
-
-        if ($this->getSign() !== $this->request->calculateSign($this->data)) {
-            throw new InvalidResponseException('Failed to validate sign');
-        }
-
-        if ($this->getState() !== 'success') {
-            throw new InvalidResponseException('Failed to validate sign');
-        }
-    }
-
-    /**
-     * Whether the payment is successful
-     *
-     * @return boolean
-     */
-    public function isSuccessful()
-    {
-        return $this->getState() === 'success';
-    }
-
-    /**
      * The checkout ID
      *
      * @return string
      */
     public function getCheckoutId()
     {
-        return $this->data['ik_co_id'];
+        return $this->data['ik_shop_id'];
     }
 
     /**
@@ -73,7 +47,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTransactionId()
     {
-        return $this->data['ik_inv_id'];
+        return $this->data['ik_trans_id'];
     }
 
     /**
@@ -81,7 +55,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTransactionReference()
     {
-        return $this->data['ik_trn_id'];
+        return $this->data['ik_payment_id'];
     }
 
     /**
@@ -91,17 +65,17 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getAmount()
     {
-        return $this->data['ik_am'];
+        return $this->data['ik_payment_amount'];
     }
 
     /**
      * The currency of the payment
      *
-     * @return string
+     * @return null currency is set
      */
     public function getCurrency()
     {
-        return strtoupper($this->data['ik_cur']);
+        return null;
     }
 
     /**
@@ -111,7 +85,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTime()
     {
-        return $this->data['ik_inv_prc'];
+        return strtotime($this->data['ik_payment_timestamp'] . ' Europe/Moscow');
     }
 
     /**
