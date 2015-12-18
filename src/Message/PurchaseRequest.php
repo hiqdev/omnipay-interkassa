@@ -78,7 +78,7 @@ class PurchaseRequest extends AbstractRequest
             }
         }
 
-        if ($this->getSecretKey()) {
+        if ($this->getSecret()) {
             $return['ik_sign'] = $this->calculateSign($return);
         }
 

@@ -90,23 +90,23 @@ class Gateway extends AbstractGateway
     /**
      * Get the secret key.
      *
-     * @return string secret key
+     * @return string secret
      */
-    public function getSecretKey()
+    public function getSecret()
     {
-        return $this->getParameter('secretKey');
+        return $this->getParameter('secret');
     }
 
     /**
-     * Set the secret key.
+     * Set the secret.
      *
-     * @param string $value secret key
+     * @param string $value secret
      *
      * @return self
      */
-    public function setSecretKey($value)
+    public function setSecret($value)
     {
-        return $this->setParameter('secretKey', $value);
+        return $this->setParameter('secret', $value);
     }
 
     /**

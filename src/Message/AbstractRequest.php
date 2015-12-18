@@ -49,25 +49,25 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get the secret key.
+     * Get the secret.
      *
      * @return string secret key
      */
-    public function getSecretKey()
+    public function getSecret()
     {
-        return $this->getParameter('secretKey');
+        return $this->getParameter('secret');
     }
 
     /**
-     * Set the secret key.
+     * Set the secret.
      *
      * @param string $key secret key
      *
      * @return self
      */
-    public function setSecretKey($key)
+    public function setSecret($key)
     {
-        return $this->setParameter('secretKey', $key);
+        return $this->setParameter('secret', $key);
     }
 
     /**
@@ -144,7 +144,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         unset($data['ik_sign']);
         ksort($data, SORT_STRING);
-        array_push($data, $this->getSecretKey());
+        array_push($data, $this->getSecret());
         $signString = implode(':', $data);
         $sign = base64_encode(hash('sha256', $signString, true));
         return $sign;
