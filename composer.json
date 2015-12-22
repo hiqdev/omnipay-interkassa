@@ -54,5 +54,10 @@
         "psr-4": {
             "Omnipay\\InterKassa\\": "src"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Omnipay\\InterKassa\\Tests\\": "tests/unit"
+        }
     }
 }

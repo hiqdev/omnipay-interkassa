@@ -27,6 +27,27 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $endpoint = 'https://sci.interkassa.com/';
 
     /**
+     * Get the unified purse.
+     *
+     * @return string merchant purse
+     */
+    public function getPurse()
+    {
+        return $this->getCheckoutId();
+    }
+
+    /**
+     * Set the unified purse.
+     *
+     * @param $value
+     * @return self
+     */
+    public function setPurse($value)
+    {
+        return $this->setCheckoutId($value);
+    }
+
+    /**
      * Get the merchant purse.
      *
      * @return string merchant purse

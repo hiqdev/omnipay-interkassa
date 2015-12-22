@@ -27,19 +27,14 @@ class Gateway extends AbstractGateway
         return 'InterKassa';
     }
 
-    public function getAssetDir()
-    {
-        return dirname(__DIR__) . '/assets';
-    }
-
     /**
      * {@inheritdoc}
      */
     public function getDefaultParameters()
     {
         return [
-            'checkoutId' => '',
-            'secretKey'  => '',
+            'purse' => '',
+            'secret'  => '',
             'testMode'   => false,
         ];
     }

@@ -11,9 +11,6 @@
 
 namespace Omnipay\InterKassa\Message;
 
-use Omnipay\Common\Exception\InvalidResponseException;
-use Omnipay\Common\Message\RequestInterface;
-
 /**
  * InterKassa Complete Purchase Response
  * Implements response for APIv1
@@ -30,14 +27,6 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
     public function getCheckoutId()
     {
         return $this->data['ik_shop_id'];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSign()
-    {
-        return $this->data['ik_sign_hash'];
     }
 
     /**
@@ -108,5 +97,13 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
     public function getState()
     {
         return $this->data['ik_payment_state'];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSign()
+    {
+        return $this->data['ik_sign_hash'];
     }
 }

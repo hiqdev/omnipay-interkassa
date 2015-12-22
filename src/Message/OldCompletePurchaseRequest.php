@@ -32,4 +32,17 @@ class OldCompletePurchaseRequest extends CompletePurchaseRequest
     {
         return $this->response = new OldCompletePurchaseResponse($this, $data);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function calculateSign($data)
+    {
+        unset($data['ik_sign_hash']);
+        ksort($data, SORT_STRING);
+        array_push($data, $this->getSecret());
+        $signString = implode(':', $data);
+        $sign = base64_encode(hash('sha256', $signString, true));
+        return $sign;
+    }
 }

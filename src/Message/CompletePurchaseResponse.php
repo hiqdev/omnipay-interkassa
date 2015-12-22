@@ -36,11 +36,11 @@ class CompletePurchaseResponse extends AbstractResponse
         parent::__construct($request, $data);
 
         if ($this->getSign() !== $this->request->calculateSign($this->data)) {
-            throw new InvalidResponseException('Failed to validate sign');
+            throw new InvalidResponseException('Failed to validate signature: ' . $this->request->calculateSign($this->data));
         }
 
         if ($this->getState() !== 'success') {
-            throw new InvalidResponseException('Failed to validate sign');
+            throw new InvalidResponseException('The payment was not success');
         }
     }
 

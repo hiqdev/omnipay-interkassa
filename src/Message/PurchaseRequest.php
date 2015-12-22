@@ -18,14 +18,6 @@ namespace Omnipay\InterKassa\Message;
 class PurchaseRequest extends AbstractRequest
 {
     /**
-     * @return string
-     */
-    public function getBaggageFields()
-    {
-        return $this->getCurrency() . ' ' . $this->username;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getData()
@@ -69,12 +61,6 @@ class PurchaseRequest extends AbstractRequest
 
             if ($ik_ia_m = $this->getNotifyMethod()) {
                 $return['ik_ia_m'] = $ik_ia_m;
-            }
-        }
-
-        foreach ($this->getParameters() as $key => $parameter) {
-            if (strpos($key, 'ik_') === 0) {
-                $return[$key] = $parameter;
             }
         }
 
