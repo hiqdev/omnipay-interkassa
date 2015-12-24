@@ -16,7 +16,6 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * InterKassa Purchase Response.
- * @package Omnipay\InterKassa\Message
  */
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {

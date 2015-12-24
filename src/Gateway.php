@@ -137,7 +137,7 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Whether the request is designed for API v2
+     * Whether the request is designed for API v2.
      * @return boolean
      */
     public function isOldApi()

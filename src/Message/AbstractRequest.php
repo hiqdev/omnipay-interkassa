@@ -92,7 +92,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get the method for success return
+     * Get the method for success return.
      *
      * @return mixed
      */
@@ -102,7 +102,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Sets the method for success return
+     * Sets the method for success return.
      *
      * @param $returnMethod
      * @return \Omnipay\Common\Message\AbstractRequest
@@ -113,7 +113,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get the method for canceled payment return
+     * Get the method for canceled payment return.
      *
      * @return mixed
      */
@@ -123,19 +123,18 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Sets the method for canceled payment return
+     * Sets the method for canceled payment return.
      *
      * @param $cancelMethod
      * @return \Omnipay\Common\Message\AbstractRequest
      */
-
     public function setCancelMethod($cancelMethod)
     {
         return $this->setParameter('cancelMethod', $cancelMethod);
     }
 
     /**
-     * Get the method for request notify
+     * Get the method for request notify.
      *
      * @return mixed
      */
@@ -145,7 +144,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Sets the method for request notify
+     * Sets the method for request notify.
      *
      * @param $notifyMethod
      * @return \Omnipay\Common\Message\AbstractRequest
@@ -156,7 +155,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Calculates sign for the $data
+     * Calculates sign for the $data.
      *
      * @param array $data
      * @return string

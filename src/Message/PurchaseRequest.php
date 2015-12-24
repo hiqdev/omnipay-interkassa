@@ -12,8 +12,7 @@
 namespace Omnipay\InterKassa\Message;
 
 /**
- * Class PurchaseRequest
- * @package Omnipay\InterKassa\Message
+ * Class PurchaseRequest.
  */
 class PurchaseRequest extends AbstractRequest
 {
@@ -34,7 +33,7 @@ class PurchaseRequest extends AbstractRequest
 
         if ($ik_pnd_u = $this->getReturnUrl()) {
             $return['ik_pnd_u'] = $ik_pnd_u;
-            
+
             if ($ik_pnd_m = $this->getReturnMethod()) {
                 $return['ik_pnd_m'] = $ik_pnd_m;
             }

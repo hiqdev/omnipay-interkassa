@@ -13,9 +13,7 @@ namespace Omnipay\InterKassa\Message;
 
 /**
  * Class OldPurchaseRequest
- * Implements request for APIv1
- *
- * @package Omnipay\InterKassa\Message
+ * Implements request for APIv1.
  */
 class OldPurchaseRequest extends AbstractRequest
 {

@@ -1,11 +1,19 @@
 <?php
 
+/*
+ * InterKassa driver for the Omnipay PHP payment processing library
+ *
+ * @link      https://github.com/hiqdev/omnipay-interkassa
+ * @package   omnipay-interkassa
+ * @license   MIT
+ * @copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
+ */
+
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\OldCompletePurchaseRequest;
 use Omnipay\InterKassa\Message\OldCompletePurchaseResponse;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
-
 
 class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
 {
@@ -39,7 +47,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
 
         $request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
-            'secret' => $this->secret
+            'secret' => $this->secret,
         ]);
 
         return $request;

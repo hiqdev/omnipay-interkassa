@@ -14,17 +14,15 @@ namespace Omnipay\InterKassa\Message;
 use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
- * InterKassa Complete Purchase Request
- *
- * @package Omnipay\InterKassa\Message
+ * InterKassa Complete Purchase Request.
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
     /**
      * Get the data for this request.
-     * @return array request data
      * @throws InvalidResponseException
      * @throws \Omnipay\Common\Exception\InvalidRequestException
+     * @return array request data
      */
     public function getData()
     {

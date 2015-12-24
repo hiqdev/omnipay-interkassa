@@ -11,13 +11,9 @@
 
 namespace Omnipay\InterKassa\Message;
 
-use Omnipay\Common\Exception\InvalidResponseException;
-
 /**
  * InterKassa Complete Purchase Request
- * Implements request for APIv1
- *
- * @package Omnipay\InterKassa\Message
+ * Implements request for APIv1.
  */
 class OldCompletePurchaseRequest extends CompletePurchaseRequest
 {
@@ -34,7 +30,7 @@ class OldCompletePurchaseRequest extends CompletePurchaseRequest
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function calculateSign($data)
     {
