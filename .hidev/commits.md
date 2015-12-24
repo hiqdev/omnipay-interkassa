@@ -3,6 +3,14 @@ hiqdev/omnipay-interkassa commits history
 
 ## Under development
 
+    - 09b7ef1 2015-12-22 Added tests (d.naumenko.a@gmail.com)
+    - c389031 2015-12-21 Added dev-dependency to omnipay/tests (d.naumenko.a@gmail.com)
+    - d183b37 2015-12-19 Added payment method in CompletePurchase (d.naumenko.a@gmail.com)
+    - 8dc2fcc 2015-12-18 APIv1 support implemented (d.naumenko.a@gmail.com)
+    - b2fc919 2015-12-18 ScretKey -> Secret, other minor (d.naumenko.a@gmail.com)
+    - 5462d53 2015-12-17 Implemeted CompletePurchase (d.naumenko.a@gmail.com)
+    - 817dd80 2015-12-16 API v1 and API v2 separated (d.naumenko.a@gmail.com)
+    - 8d2dceb 2015-12-15 Purchase request implemented (d.naumenko.a@gmail.com)
 - Redone to `omnipay-interkassa`
     - fd2482a 2015-12-10 removed assets, now in `payment-icons` (sol@hiqdev.com)
     - a05fd52 2015-11-11 php-cs-fixed (sol@hiqdev.com)
