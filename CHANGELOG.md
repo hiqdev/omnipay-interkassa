@@ -3,6 +3,7 @@ hiqdev/omnipay-interkassa changelog
 
 ## Under development
 
+- Added tests
 - Redone to `omnipay-interkassa`
 - Added basics
 
