@@ -59,4 +59,4 @@ or better yet, fork the library and submit a pull request.
 This project is released under the terms of the MIT [license](LICENSE).
 Read more [here](http://choosealicense.com/licenses/mit).
 
-Copyright © 2015, HiQDev (http://hiqdev.com/)
+Copyright © 2015-2016, HiQDev (http://hiqdev.com/)

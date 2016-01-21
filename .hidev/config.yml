@@ -1,9 +1,9 @@
 package:
+    type:           library
     name:           omnipay-interkassa
     namespace:      Omnipay\InterKassa
-    headline:       Omnipay: InterKassa
+    headline:       'Omnipay: InterKassa'
     title:          InterKassa driver for the Omnipay PHP payment processing library
-    type:           library
     license:        MIT
     keywords:       php, omnipay, interkassa, merchant, payment
     description:    |
@@ -11,9 +11,6 @@ package:
         processing library for PHP 5.3+.
 
         This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
-
-phpunit:
-    colors:
 
 require:
     hiqdev/hidev-php:    "*"

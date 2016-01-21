@@ -6,7 +6,7 @@ InterKassa driver for the Omnipay PHP payment processing library
 @link      https://github.com/hiqdev/omnipay-interkassa
 @package   omnipay-interkassa
 @license   MIT
-@copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
+@copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
 EOF;
 
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
