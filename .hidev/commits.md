@@ -4,6 +4,7 @@ hiqdev/omnipay-interkassa commits history
 ## Under development
 
 - Added tests
+    - e315fa3 2016-01-21 rehideved (sol@hiqdev.com)
     - 876ecb8 2015-12-24 fixed build (sol@hiqdev.com)
     - 5a94e11 2015-12-24 php-cs-fixed (sol@hiqdev.com)
     - 09b7ef1 2015-12-22 Added tests (d.naumenko.a@gmail.com)
