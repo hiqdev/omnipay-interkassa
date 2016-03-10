@@ -77,7 +77,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTransactionId()
     {
-        return $this->data['ik_inv_id'];
+        return $this->data['ik_pm_no'];
     }
 
     /**
