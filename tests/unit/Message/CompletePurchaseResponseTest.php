@@ -13,26 +13,23 @@ namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\CompletePurchaseRequest;
 use Omnipay\InterKassa\Message\CompletePurchaseResponse;
+use Omnipay\InterKassa\Stubs\CompletePurchaseResponseStub;
 use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class CompletePurchaseResponseTest extends TestCase
 {
-    protected $purse = '887ac1234c1eeee1488b156b';
-    protected $signAlgorithm = 'sha256';
-    protected $signKey = 'Zp2zfdSJzbS61L32';
-    protected $testKey = 'W0b98idvHeKY2h3w';
-    protected $payment_no = '1235151';
-    protected $description = 'Test Transaction long description';
-    protected $payway = 'visa_liqpay_merchant_usd';
-    protected $invoiceId = '5632156';
-    protected $transactionId = 'ID_123456';
-    protected $amount = '5.12';
-    protected $currency = 'USD';
-    protected $state = 'success';
-    protected $sign = 'CwbLEwwevJc/5TyOTfIPDXMfIfXP5tPjWkUDX98bAug=';
-    protected $time = '2015-12-17 17:36:13';
-    protected $timestamp = 1450362973;
+    /**
+     * @var CompletePurchaseResponseStub
+     */
+    protected $stub;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->stub = new CompletePurchaseResponseStub();
+    }
 
     /**
      * @param array $options
@@ -40,23 +37,25 @@ class CompletePurchaseResponseTest extends TestCase
      */
     public function createRequest($options = [])
     {
+        $stub = $this->stub;
+
         $httpRequest = new HttpRequest([], array_merge([
-            'ik_co_id' => $this->purse,
-            'ik_pm_no' => $this->payment_no,
-            'ik_desc' => $this->description,
-            'ik_pw_via' => $this->payway,
-            'ik_am' => $this->amount,
-            'ik_cur' => $this->currency,
-            'ik_inv_id' => $this->transactionId,
-            'ik_inv_st' => $this->state,
-            'ik_inv_prc' => $this->time,
-            'ik_sign' => $this->sign,
+            'ik_co_id' => $stub->purse,
+            'ik_pm_no' => $stub->payment_no,
+            'ik_desc' => $stub->description,
+            'ik_pw_via' => $stub->payway,
+            'ik_am' => $stub->amount,
+            'ik_cur' => $stub->currency,
+            'ik_inv_id' => $stub->transactionId,
+            'ik_inv_st' => $stub->state,
+            'ik_inv_prc' => $stub->time,
+            'ik_sign' => $stub->sign,
         ], $options));
 
         $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
         ]);
 
         return $request;
@@ -78,15 +77,17 @@ class CompletePurchaseResponseTest extends TestCase
     {
         /** @var CompletePurchaseResponse $response */
         $response = $this->createRequest()->send();
+        $stub = $this->stub;
+
         $this->assertTrue($response->isSuccessful());
-        $this->assertSame($this->purse, $response->getCheckoutId());
-        $this->assertSame($this->payment_no, $response->getTransactionId());
-        $this->assertSame($this->transactionId, $response->getTransactionReference());
-        $this->assertSame($this->amount, $response->getAmount());
-        $this->assertSame($this->currency, $response->getCurrency());
-        $this->assertSame($this->timestamp, $response->getTime());
-        $this->assertSame($this->payway, $response->getPayer());
-        $this->assertSame($this->state, $response->getState());
-        $this->assertSame($this->sign, $response->getSign());
+        $this->assertSame($stub->purse, $response->getCheckoutId());
+        $this->assertSame($stub->payment_no, $response->getTransactionId());
+        $this->assertSame($stub->transactionId, $response->getTransactionReference());
+        $this->assertSame($stub->amount, $response->getAmount());
+        $this->assertSame($stub->currency, $response->getCurrency());
+        $this->assertSame($stub->timestamp, $response->getTime());
+        $this->assertSame($stub->payway, $response->getPayer());
+        $this->assertSame($stub->state, $response->getState());
+        $this->assertSame($stub->sign, $response->getSign());
     }
 }

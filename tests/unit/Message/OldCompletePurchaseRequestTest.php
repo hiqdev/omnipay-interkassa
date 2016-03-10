@@ -12,6 +12,7 @@
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\OldCompletePurchaseRequest;
+use Omnipay\InterKassa\Stubs\OldCompletePurchaseRequestStub;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class OldCompletePurchaseRequestTest extends CompletePurchaseRequestTest
@@ -21,40 +22,45 @@ class OldCompletePurchaseRequestTest extends CompletePurchaseRequestTest
      */
     protected $request;
 
-    protected $purse = '62B97027-5260-1442-CF1A-7BDC16454400';
-    protected $sign = 'V0VYdl/G3aHvoilH69DcKMaKkghmi5BVkGc9FZfy6No=';
+    /**
+     * @var OldCompletePurchaseRequestStub
+     */
+    protected $stub;
 
     public function setUp()
     {
         parent::setUp();
 
+        $stub = $this->stub = new OldCompletePurchaseRequestStub();
+
         $httpRequest = new HttpRequest([], [
-            'ik_shop_id' => $this->purse,
-            'ik_payment_id' => $this->transactionId,
-            'ik_payment_desc' => $this->description,
-            'ik_payment_amount' => $this->amount,
-            'ik_payment_timestamp' => $this->time,
-            'ik_sign_hash' => $this->sign,
-            'ik_payment_state' => $this->state,
+            'ik_shop_id' => $stub->purse,
+            'ik_payment_id' => $stub->transactionId,
+            'ik_payment_desc' => $stub->description,
+            'ik_payment_amount' => $stub->amount,
+            'ik_payment_timestamp' => $stub->time,
+            'ik_sign_hash' => $stub->sign,
+            'ik_payment_state' => $stub->state,
         ]);
 
         $this->request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $this->request->initialize([
-            'purse' => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
         ]);
     }
 
     public function testGetData()
     {
+        $stub = $this->stub;
         $data = $this->request->getData();
 
-        $this->assertSame($this->purse, $data['ik_shop_id']);
-        $this->assertSame($this->transactionId, $data['ik_payment_id']);
-        $this->assertSame($this->description, $data['ik_payment_desc']);
-        $this->assertSame($this->amount, $data['ik_payment_amount']);
-        $this->assertSame($this->time, $data['ik_payment_timestamp']);
+        $this->assertSame($stub->purse, $data['ik_shop_id']);
+        $this->assertSame($stub->transactionId, $data['ik_payment_id']);
+        $this->assertSame($stub->description, $data['ik_payment_desc']);
+        $this->assertSame($stub->amount, $data['ik_payment_amount']);
+        $this->assertSame($stub->time, $data['ik_payment_timestamp']);
     }
 
     public function testSendData()

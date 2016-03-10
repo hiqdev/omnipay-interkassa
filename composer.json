@@ -57,7 +57,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Omnipay\\InterKassa\\Tests\\": "tests/unit"
+            "Omnipay\\InterKassa\\Tests\\": "tests/unit",
+            "Omnipay\\InterKassa\\Stubs\\": "tests/stubs"
         }
     }
 }

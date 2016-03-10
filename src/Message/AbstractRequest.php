@@ -163,7 +163,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getCancelMethod()
     {
-        return $this->getParameter('returnMethod');
+        return $this->getParameter('cancelMethod');
     }
 
     /**

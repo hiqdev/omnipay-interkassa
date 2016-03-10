@@ -12,33 +12,45 @@
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\OldPurchaseRequest;
+use Omnipay\InterKassa\Stubs\OldPurchaseRequestStub;
+use Omnipay\Tests\TestCase;
 
-class OldPurchaseRequestTest extends PurchaseRequestTest
+class OldPurchaseRequestTest extends TestCase
 {
+    /**
+     * @var OldPurchaseRequestStub
+     */
+    private $stub;
+
     /**
      * @var OldPurchaseRequest
      */
     protected $request;
 
-    protected $purse = '62B97027-5260-1442-CF1A-7BDC16454400';
 
     public function setUp()
     {
         parent::setUp();
 
+        $this->stub = new OldPurchaseRequestStub();
+        $stub = $this->stub;
+
         $this->request = new OldPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize([
-            'purse' => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
-            'testKey' => $this->testKey,
-            'returnUrl' => $this->returnUrl,
-            'cancelUrl' => $this->cancelUrl,
-            'notifyUrl' => $this->notifyUrl,
-            'description' => $this->description,
-            'transactionId' => $this->transactionId,
-            'amount' => $this->amount,
-            'currency' => $this->currency,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
+            'testKey' => $stub->testKey,
+            'returnUrl' => $stub->returnUrl,
+            'returnMethod' => $stub->returnMethod,
+            'cancelUrl' => $stub->cancelUrl,
+            'cancelMethod' => $stub->cancelMethod,
+            'notifyUrl' => $stub->notifyUrl,
+            'notifyMethod' => $stub->notifyMethod,
+            'description' => $stub->description,
+            'transactionId' => $stub->transactionId,
+            'amount' => $stub->amount,
+            'currency' => $stub->currency,
         ]);
     }
 
@@ -46,13 +58,16 @@ class OldPurchaseRequestTest extends PurchaseRequestTest
     {
         $data = $this->request->getData();
 
-        $this->assertSame($this->purse, $data['ik_shop_id']);
-        $this->assertSame($this->returnUrl, $data['ik_success_url']);
-        $this->assertSame($this->cancelUrl, $data['ik_fail_url']);
-        $this->assertSame($this->notifyUrl, $data['ik_status_url']);
-        $this->assertSame($this->description, $data['ik_payment_desc']);
-        $this->assertSame($this->transactionId, $data['ik_payment_id']);
-        $this->assertSame($this->amount, $data['ik_payment_amount']);
+        $this->assertSame($this->stub->purse, $data['ik_shop_id']);
+        $this->assertSame($this->stub->returnUrl, $data['ik_success_url']);
+        $this->assertSame($this->stub->cancelUrl, $data['ik_fail_url']);
+        $this->assertSame($this->stub->notifyUrl, $data['ik_status_url']);
+        $this->assertSame($this->stub->description, $data['ik_payment_desc']);
+        $this->assertSame($this->stub->transactionId, $data['ik_payment_id']);
+        $this->assertSame($this->stub->amount, $data['ik_payment_amount']);
+        $this->assertSame($this->stub->returnMethod, $data['ik_success_method']);
+        $this->assertSame($this->stub->cancelMethod, $data['ik_fail_method']);
+        $this->assertSame($this->stub->notifyMethod, $data['ik_status_method']);
     }
 
     public function testSendData()

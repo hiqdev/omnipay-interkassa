@@ -13,18 +13,22 @@ namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\OldCompletePurchaseRequest;
 use Omnipay\InterKassa\Message\OldCompletePurchaseResponse;
+use Omnipay\InterKassa\Stubs\OldCompletePurchaseResponseStub;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
 {
     /**
-     * @var OldCompletePurchaseResponse
+     * @var OldCompletePurchaseResponseStub
      */
-    protected $request;
+    protected $stub;
 
-    protected $purse = '62B97027-5260-1442-CF1A-7BDC16454400';
-    protected $sign = '9j2mF4DH0ota6DmJvuSswIXTBAN+e/WDcaZ0ntsRcfo=';
-    protected $currency = null;
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->stub = new OldCompletePurchaseResponseStub();
+    }
 
     /**
      * @param array $options
@@ -32,23 +36,25 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
      */
     public function createRequest($options = [])
     {
+        $stub = $this->stub;
+
         $httpRequest = new HttpRequest([], array_merge([
-            'ik_shop_id' => $this->purse,
-            'ik_payment_id' => $this->payment_no,
-            'ik_payment_desc' => $this->description,
-            'ik_payment_amount' => $this->amount,
-            'ik_payment_timestamp' => $this->time,
-            'ik_sign_hash' => $this->sign,
-            'ik_payment_state' => $this->state,
-            'ik_trans_id' => $this->transactionId,
-            'ik_paysystem_alias' => $this->payway,
+            'ik_shop_id' => $stub->purse,
+            'ik_payment_id' => $stub->payment_no,
+            'ik_payment_desc' => $stub->description,
+            'ik_payment_amount' => $stub->amount,
+            'ik_payment_timestamp' => $stub->time,
+            'ik_sign_hash' => $stub->sign,
+            'ik_payment_state' => $stub->state,
+            'ik_trans_id' => $stub->transactionId,
+            'ik_paysystem_alias' => $stub->payway,
 
         ], $options));
 
         $request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
         ]);
 
         return $request;
@@ -64,5 +70,23 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
         $this->createRequest(['ik_payment_state' => 'fail', 'ik_sign_hash' => 'IL/KyMotmW5XeL2g86kYGlVJXOYTO+HAsuSzudI0qHE='])->send();
+    }
+
+    public function testSuccess()
+    {
+        /** @var OldCompletePurchaseResponse $response */
+        $response = $this->createRequest()->send();
+        $stub = $this->stub;
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertSame($stub->purse, $response->getCheckoutId());
+        $this->assertSame($stub->payment_no, $response->getTransactionId());
+        $this->assertSame($stub->transactionId, $response->getTransactionReference());
+        $this->assertSame($stub->amount, $response->getAmount());
+        $this->assertSame($stub->currency, $response->getCurrency());
+        $this->assertSame($stub->timestamp, $response->getTime());
+        $this->assertSame($stub->payway, $response->getPayer());
+        $this->assertSame($stub->state, $response->getState());
+        $this->assertSame($stub->sign, $response->getSign());
     }
 }

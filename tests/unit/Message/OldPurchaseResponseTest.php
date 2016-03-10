@@ -12,45 +12,44 @@
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\OldPurchaseRequest;
-use Omnipay\InterKassa\Message\PurchaseRequest;
 use Omnipay\InterKassa\Message\PurchaseResponse;
+use Omnipay\InterKassa\Stubs\OldPurchaseResponseStub;
 
 class OldPurchaseResponseTest extends PurchaseResponseTest
 {
     /**
-     * @var OldPurchaseRequest
+     * @var PurchaseResponse
      */
     protected $request;
 
-    protected $purse = '887ac1234c1eeee1488b156b';
-    protected $signKey = 'Zp2zfdSJzbS61L32';
-    protected $testKey = 'W0b98idvHeKY2h3w';
-    protected $returnUrl = 'https://www.example.com/success';
-    protected $cancelUrl = 'https://www.example.com/failure';
-    protected $notifyUrl = 'https://www.example.com/notify';
-    protected $description = 'Test Transaction long description';
-    protected $transactionId = 'ID_123456';
-    protected $amount = '14.65';
-    protected $currency = 'USD';
-    protected $sign = 'C5sYWKMUZF1SDPTAGosZntOLC8Q2WWNvxx4bwy/gIwc=';
+    /**
+     * @var OldPurchaseResponseStub
+     */
+    private $stub;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->stub = new OldPurchaseResponseStub();
+        $stub = $this->stub;
+
+        $this->request = new OldPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize([
-            'purse' => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
-            'testKey' => $this->testKey,
-            'returnUrl' => $this->returnUrl,
-            'cancelUrl' => $this->cancelUrl,
-            'notifyUrl' => $this->notifyUrl,
-            'description' => $this->description,
-            'transactionId' => $this->transactionId,
-            'amount' => $this->amount,
-            'currency' => $this->currency,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
+            'testKey' => $stub->testKey,
+            'returnUrl' => $stub->returnUrl,
+            'cancelUrl' => $stub->cancelUrl,
+            'notifyUrl' => $stub->notifyUrl,
+            'returnMethod' => $stub->returnMethod,
+            'cancelMethod' => $stub->cancelMethod,
+            'notifyMethod' => $stub->notifyMethod,
+            'description' => $stub->description,
+            'transactionId' => $stub->transactionId,
+            'amount' => $stub->amount,
+            'currency' => $stub->currency,
         ]);
     }
 
@@ -58,6 +57,7 @@ class OldPurchaseResponseTest extends PurchaseResponseTest
     {
         /** @var PurchaseResponse $response */
         $response = $this->request->send();
+        $stub = $this->stub;
 
         $this->assertFalse($response->isSuccessful());
         $this->assertTrue($response->isRedirect());
@@ -66,16 +66,16 @@ class OldPurchaseResponseTest extends PurchaseResponseTest
 
         $this->assertSame('POST', $response->getRedirectMethod());
         $this->assertSame([
-            'ik_co_id' => $this->purse,
-            'ik_am' => $this->amount,
-            'ik_pm_no' => $this->transactionId,
-            'ik_desc' => $this->description,
-            'ik_cur' => $this->currency,
-            'ik_pnd_u' => $this->returnUrl,
-            'ik_suc_u' => $this->returnUrl,
-            'ik_fal_u' => $this->cancelUrl,
-            'ik_ia_u' => $this->notifyUrl,
-            'ik_sign' => $this->sign,
+            'ik_shop_id' => $stub->purse,
+            'ik_payment_amount' => $stub->amount,
+            'ik_payment_id' => $stub->transactionId,
+            'ik_payment_desc' => $stub->description,
+            'ik_success_url' => $stub->returnUrl,
+            'ik_success_method' => $stub->returnMethod,
+            'ik_fail_url' => $stub->cancelUrl,
+            'ik_fail_method' => $stub->cancelMethod,
+            'ik_status_url' => $stub->notifyUrl,
+            'ik_status_method' => $stub->notifyMethod,
         ], $response->getRedirectData());
     }
 }

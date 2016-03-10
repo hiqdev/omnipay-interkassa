@@ -12,44 +12,45 @@
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\PurchaseRequest;
+use Omnipay\InterKassa\Stubs\PurchaseRequestStub;
 use Omnipay\Tests\TestCase;
 
 class PurchaseRequestTest extends TestCase
 {
     /**
+     * @var
+     */
+    private $stub;
+
+    /**
      * @var PurchaseRequest
      */
     protected $request;
 
-    protected $purse          = '887ac1234c1eeee1488b156b';
-    protected $signAlgorithm  = 'sha256';
-    protected $signKey        = 'Zp2zfdSJzbS61L32';
-    protected $testKey        = 'W0b98idvHeKY2h3w';
-    protected $returnUrl      = 'https://www.example.com/success';
-    protected $cancelUrl      = 'https://www.example.com/failure';
-    protected $notifyUrl      = 'https://www.example.com/notify';
-    protected $description    = 'Test Transaction long description';
-    protected $transactionId  = 'ID_123456';
-    protected $amount         = '14.65';
-    protected $currency       = 'USD';
 
     public function setUp()
     {
         parent::setUp();
 
+        $this->stub = new PurchaseRequestStub();
+        $stub = $this->stub;
+
         $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize([
-            'purse'         => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey'       => $this->signKey,
-            'testKey'       => $this->testKey,
-            'returnUrl'     => $this->returnUrl,
-            'cancelUrl'     => $this->cancelUrl,
-            'notifyUrl'     => $this->notifyUrl,
-            'description'   => $this->description,
-            'transactionId' => $this->transactionId,
-            'amount'        => $this->amount,
-            'currency'      => $this->currency,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
+            'testKey' => $stub->testKey,
+            'returnUrl' => $stub->returnUrl,
+            'returnMethod' => $stub->returnMethod,
+            'cancelUrl' => $stub->cancelUrl,
+            'cancelMethod' => $stub->cancelMethod,
+            'notifyUrl' => $stub->notifyUrl,
+            'notifyMethod' => $stub->notifyMethod,
+            'description' => $stub->description,
+            'transactionId' => $stub->transactionId,
+            'amount' => $stub->amount,
+            'currency' => $stub->currency,
         ]);
     }
 
@@ -57,14 +58,18 @@ class PurchaseRequestTest extends TestCase
     {
         $data = $this->request->getData();
 
-        $this->assertSame($this->purse,         $data['ik_co_id']);
-        $this->assertSame($this->returnUrl,     $data['ik_suc_u']);
-        $this->assertSame($this->cancelUrl,     $data['ik_fal_u']);
-        $this->assertSame($this->notifyUrl,     $data['ik_ia_u']);
-        $this->assertSame($this->description,   $data['ik_desc']);
-        $this->assertSame($this->transactionId, $data['ik_pm_no']);
-        $this->assertSame($this->amount,        $data['ik_am']);
-        $this->assertSame($this->currency,      $data['ik_cur']);
+        $this->assertSame($this->stub->purse, $data['ik_co_id']);
+        $this->assertSame($this->stub->returnUrl, $data['ik_suc_u']);
+        $this->assertSame($this->stub->cancelUrl, $data['ik_fal_u']);
+        $this->assertSame($this->stub->notifyUrl, $data['ik_ia_u']);
+        $this->assertSame($this->stub->description, $data['ik_desc']);
+        $this->assertSame($this->stub->transactionId, $data['ik_pm_no']);
+        $this->assertSame($this->stub->amount, $data['ik_am']);
+        $this->assertSame($this->stub->currency, $data['ik_cur']);
+        $this->assertSame($this->stub->returnMethod, $data['ik_suc_m']);
+        $this->assertSame($this->stub->returnMethod, $data['ik_pnd_m']);
+        $this->assertSame($this->stub->cancelMethod, $data['ik_fal_m']);
+        $this->assertSame($this->stub->notifyMethod, $data['ik_ia_m']);
     }
 
     public function testSendData()

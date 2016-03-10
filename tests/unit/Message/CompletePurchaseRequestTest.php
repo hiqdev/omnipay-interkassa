@@ -12,6 +12,7 @@
 namespace Omnipay\InterKassa\Tests\Message;
 
 use Omnipay\InterKassa\Message\CompletePurchaseRequest;
+use Omnipay\InterKassa\Stubs\CompletePurchaseRequestStub;
 use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
@@ -22,51 +23,48 @@ class CompletePurchaseRequestTest extends TestCase
      */
     protected $request;
 
-    protected $purse = '887ac1234c1eeee1488b156b';
-    protected $signAlgorithm = 'sha256';
-    protected $signKey = 'Zp2zfdSJzbS61L32';
-    protected $testKey = 'W0b98idvHeKY2h3w';
-    protected $description = 'Test Transaction long description';
-    protected $transactionId = 'ID_123456';
-    protected $amount = '1465.01';
-    protected $currency = 'USD';
-    protected $state = 'success';
-    protected $time = '2015-12-22 11:07:12';
-    protected $sign = 'ACm/nwG2yH1y3EVWIriFz4xP3icbqihbAr+06nAsgcU=';
+    /**
+     * @var CompletePurchaseRequestStub
+     */
+    protected $stub;
 
     public function setUp()
     {
         parent::setUp();
 
+        $this->stub = new CompletePurchaseRequestStub();
+        $stub = $this->stub;
+
         $httpRequest = new HttpRequest([], [
-            'ik_co_id' => $this->purse,
-            'ik_trn_id' => $this->transactionId,
-            'ik_desc' => $this->description,
-            'ik_am' => $this->amount,
-            'ik_cur' => $this->currency,
-            'ik_inv_prc' => $this->time,
-            'ik_sign' => $this->sign,
-            'ik_inv_st' => $this->state,
+            'ik_co_id' => $stub->purse,
+            'ik_trn_id' => $stub->transactionId,
+            'ik_desc' => $stub->description,
+            'ik_am' => $stub->amount,
+            'ik_cur' => $stub->currency,
+            'ik_inv_prc' => $stub->time,
+            'ik_sign' => $stub->sign,
+            'ik_inv_st' => $stub->state,
         ]);
 
         $this->request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $this->request->initialize([
-            'purse' => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'signKey' => $this->signKey,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
         ]);
     }
 
     public function testGetData()
     {
         $data = $this->request->getData();
+        $stub = $this->stub;
 
-        $this->assertSame($this->purse, $data['ik_co_id']);
-        $this->assertSame($this->transactionId, $data['ik_trn_id']);
-        $this->assertSame($this->description, $data['ik_desc']);
-        $this->assertSame($this->amount, $data['ik_am']);
-        $this->assertSame($this->currency, $data['ik_cur']);
-        $this->assertSame($this->time, $data['ik_inv_prc']);
+        $this->assertSame($stub->purse, $data['ik_co_id']);
+        $this->assertSame($stub->transactionId, $data['ik_trn_id']);
+        $this->assertSame($stub->description, $data['ik_desc']);
+        $this->assertSame($stub->amount, $data['ik_am']);
+        $this->assertSame($stub->currency, $data['ik_cur']);
+        $this->assertSame($stub->time, $data['ik_inv_prc']);
     }
 
     public function testSendData()
@@ -78,32 +76,34 @@ class CompletePurchaseRequestTest extends TestCase
 
     public function testTestMode()
     {
+        $stub = $this->stub;
+
         $httpRequest = new HttpRequest([], [
-            'ik_co_id' => $this->purse,
-            'ik_trn_id' => $this->transactionId,
-            'ik_desc' => $this->description,
-            'ik_am' => $this->amount,
-            'ik_cur' => $this->currency,
-            'ik_inv_prc' => $this->time,
-            'ik_sign' => $this->sign,
-            'ik_inv_st' => $this->state,
+            'ik_co_id' => $stub->purse,
+            'ik_trn_id' => $stub->transactionId,
+            'ik_desc' => $stub->description,
+            'ik_am' => $stub->amount,
+            'ik_cur' => $stub->currency,
+            'ik_inv_prc' => $stub->time,
+            'ik_sign' => $stub->sign,
+            'ik_inv_st' => $stub->state,
         ]);
 
         $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
             'testMode' => true,
-            'purse' => $this->purse,
-            'signAlgorithm' => $this->signAlgorithm,
-            'testKey' => $this->testKey,
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'testKey' => $stub->testKey,
         ]);
 
         $data = $request->getData();
 
-        $this->assertSame($this->purse, $data['ik_co_id']);
-        $this->assertSame($this->transactionId, $data['ik_trn_id']);
-        $this->assertSame($this->description, $data['ik_desc']);
-        $this->assertSame($this->amount, $data['ik_am']);
-        $this->assertSame($this->currency, $data['ik_cur']);
-        $this->assertSame($this->time, $data['ik_inv_prc']);
+        $this->assertSame($stub->purse, $data['ik_co_id']);
+        $this->assertSame($stub->transactionId, $data['ik_trn_id']);
+        $this->assertSame($stub->description, $data['ik_desc']);
+        $this->assertSame($stub->amount, $data['ik_am']);
+        $this->assertSame($stub->currency, $data['ik_cur']);
+        $this->assertSame($stub->time, $data['ik_inv_prc']);
     }
 }

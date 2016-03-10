@@ -37,7 +37,6 @@ class OldPurchaseRequest extends AbstractRequest
             'ik_payment_amount' => $this->getAmount(),
             'ik_payment_id' => $this->getTransactionId(),
             'ik_payment_desc' => $this->getDescription(),
-            'ik_baggage_fields' => $this->getBaggageFields(),
         ];
 
         if ($ik_success_url = $this->getReturnUrl()) {
