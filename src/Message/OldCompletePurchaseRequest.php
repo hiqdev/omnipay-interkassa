@@ -32,13 +32,13 @@ class OldCompletePurchaseRequest extends CompletePurchaseRequest
     /**
      * {@inheritdoc}
      */
-    public function calculateSign($data)
+    public function calculateSign($data, $signKey)
     {
         unset($data['ik_sign_hash']);
         ksort($data, SORT_STRING);
-        array_push($data, $this->getSecret());
+        array_push($data, $signKey);
+        $signAlgorithm = $this->getSignAlgorithm();
         $signString = implode(':', $data);
-        $sign = base64_encode(hash('sha256', $signString, true));
-        return $sign;
+        return base64_encode(hash($signAlgorithm, $signString, true));
     }
 }

@@ -21,7 +21,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('checkoutId', 'amount', 'currency', 'description', 'transactionId');
+        $this->validate('checkoutId', 'signKey', 'amount', 'currency', 'description', 'transactionId');
 
         $return = [
             'ik_co_id'          => $this->getCheckoutId(),
@@ -63,8 +63,8 @@ class PurchaseRequest extends AbstractRequest
             }
         }
 
-        if ($this->getSecret()) {
-            $return['ik_sign'] = $this->calculateSign($return);
+        if ($signKey = $this->getSignKey()) {
+            $return['ik_sign'] = $this->calculateSign($return, $signKey);
         }
 
         return $return;

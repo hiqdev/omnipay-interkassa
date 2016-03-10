@@ -29,7 +29,9 @@ class OldPurchaseRequestTest extends PurchaseRequestTest
         $this->request = new OldPurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize([
             'purse' => $this->purse,
-            'secret' => $this->secret,
+            'signAlgorithm' => $this->signAlgorithm,
+            'signKey' => $this->signKey,
+            'testKey' => $this->testKey,
             'returnUrl' => $this->returnUrl,
             'cancelUrl' => $this->cancelUrl,
             'notifyUrl' => $this->notifyUrl,
