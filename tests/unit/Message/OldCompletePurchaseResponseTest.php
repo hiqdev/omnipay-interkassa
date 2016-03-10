@@ -23,7 +23,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     protected $request;
 
     protected $purse = '62B97027-5260-1442-CF1A-7BDC16454400';
-    protected $sign = 'RtCUy16yl+8c3YidodCa7GC5j0BlI9Y0N5N6oUMLriI=';
+    protected $sign = '9j2mF4DH0ota6DmJvuSswIXTBAN+e/WDcaZ0ntsRcfo=';
     protected $currency = null;
 
     /**
@@ -34,13 +34,13 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     {
         $httpRequest = new HttpRequest([], array_merge([
             'ik_shop_id' => $this->purse,
-            'ik_payment_id' => $this->transactionId,
+            'ik_payment_id' => $this->payment_no,
             'ik_payment_desc' => $this->description,
             'ik_payment_amount' => $this->amount,
             'ik_payment_timestamp' => $this->time,
             'ik_sign_hash' => $this->sign,
             'ik_payment_state' => $this->state,
-            'ik_trans_id' => $this->invoiceId,
+            'ik_trans_id' => $this->transactionId,
             'ik_paysystem_alias' => $this->payway,
 
         ], $options));
@@ -62,6 +62,6 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     public function testStateException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
-        $this->createRequest(['ik_payment_state' => 'fail', 'ik_sign_hash' => '2+Wv5Qna6e+BIhRrykWZ46RJ5sVeEnMdVfPUMxa8tVc='])->send();
+        $this->createRequest(['ik_payment_state' => 'fail', 'ik_sign_hash' => 'IL/KyMotmW5XeL2g86kYGlVJXOYTO+HAsuSzudI0qHE='])->send();
     }
 }
