@@ -34,7 +34,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTransactionId()
     {
-        return $this->data['ik_trans_id'];
+        return $this->data['ik_payment_id'];
     }
 
     /**
@@ -42,7 +42,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTransactionReference()
     {
-        return $this->data['ik_payment_id'];
+        return $this->data['ik_trans_id'];
     }
 
     /**
