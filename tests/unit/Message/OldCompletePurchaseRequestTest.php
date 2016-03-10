@@ -41,7 +41,8 @@ class OldCompletePurchaseRequestTest extends CompletePurchaseRequestTest
         $this->request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $this->request->initialize([
             'purse' => $this->purse,
-            'secret' => $this->secret,
+            'signAlgorithm' => $this->signAlgorithm,
+            'signKey' => $this->signKey,
         ]);
     }
 

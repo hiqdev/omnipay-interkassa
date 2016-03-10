@@ -19,7 +19,9 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
 class CompletePurchaseResponseTest extends TestCase
 {
     protected $purse = '887ac1234c1eeee1488b156b';
-    protected $secret = 'Zp2zfdSJzbS61L32';
+    protected $signAlgorithm = 'sha256';
+    protected $signKey = 'Zp2zfdSJzbS61L32';
+    protected $testKey = 'W0b98idvHeKY2h3w';
     protected $payment_no = '1235151';
     protected $description = 'Test Transaction long description';
     protected $payway = 'visa_liqpay_merchant_usd';
@@ -30,6 +32,7 @@ class CompletePurchaseResponseTest extends TestCase
     protected $state = 'success';
     protected $sign = '3Ra3gDluuAKUoGddlJTfrTJrQpjQHqbAbkUKB5k11y0=';
     protected $time = '2015-12-17 17:36:13';
+    protected $timestamp = 1450362973;
 
     /**
      * @param array $options
@@ -53,7 +56,8 @@ class CompletePurchaseResponseTest extends TestCase
 
         $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
-            'secret' => $this->secret,
+            'signAlgorithm' => $this->signAlgorithm,
+            'signKey' => $this->signKey,
         ]);
 
         return $request;
@@ -75,14 +79,13 @@ class CompletePurchaseResponseTest extends TestCase
     {
         /** @var CompletePurchaseResponse $response */
         $response = $this->createRequest()->send();
-
         $this->assertTrue($response->isSuccessful());
         $this->assertSame($this->purse, $response->getCheckoutId());
         $this->assertSame($this->payment_no, $response->getTransactionId());
         $this->assertSame($this->transactionId, $response->getTransactionReference());
         $this->assertSame($this->amount, $response->getAmount());
         $this->assertSame($this->currency, $response->getCurrency());
-        $this->assertSame(strtotime($this->time . ' Europe/Moscow'), $response->getTime());
+        $this->assertSame($this->timestamp, $response->getTime());
         $this->assertSame($this->payway, $response->getPayer());
         $this->assertSame($this->state, $response->getState());
         $this->assertSame($this->sign, $response->getSign());

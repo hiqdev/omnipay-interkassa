@@ -33,8 +33,11 @@ class CompletePurchaseResponse extends AbstractResponse
     {
         parent::__construct($request, $data);
 
-        if ($this->getSign() !== $this->request->calculateSign($this->data)) {
-            throw new InvalidResponseException('Failed to validate signature: ' . $this->request->calculateSign($this->data));
+        $signKey = $this->request->getTestMode() ? $this->request->getTestKey() : $this->request->getSignKey();
+        $signExpected = $this->request->calculateSign($this->data, $signKey);
+
+        if ($this->getSign() !== $signExpected) {
+            throw new InvalidResponseException('Failed to validate signature: ' . $signExpected);
         }
 
         if ($this->getState() !== 'success') {
@@ -115,7 +118,8 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTime()
     {
-        return strtotime($this->data['ik_inv_prc'] . ' Europe/Moscow');
+        $date = new \DateTime($this->data['ik_inv_prc'], new \DateTimeZone('Europe/Moscow'));
+        return $date->getTimestamp();
     }
 
     /**

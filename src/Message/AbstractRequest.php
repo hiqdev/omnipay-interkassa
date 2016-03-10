@@ -70,25 +70,69 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get the secret.
+     * Get the sign algorithm.
      *
-     * @return string secret key
+     * @return string sign algorithm
      */
-    public function getSecret()
+    public function getSignAlgorithm()
     {
-        return $this->getParameter('secret');
+        return strtolower($this->getParameter('signAlgorithm'));
     }
 
     /**
-     * Set the secret.
+     * Set the sign algorithm.
      *
-     * @param string $key secret key
+     * @param string $value sign algorithm
      *
      * @return self
      */
-    public function setSecret($key)
+    public function setSignAlgorithm($value)
     {
-        return $this->setParameter('secret', $key);
+        return $this->setParameter('signAlgorithm', $value);
+    }
+
+    /**
+     * Get the sign key.
+     *
+     * @return string sign key
+     */
+    public function getSignKey()
+    {
+        return $this->getParameter('signKey');
+    }
+
+    /**
+     * Set the sign key.
+     *
+     * @param string $value sign key
+     *
+     * @return self
+     */
+    public function setSignKey($value)
+    {
+        return $this->setParameter('signKey', $value);
+    }
+
+    /**
+     * Get the test key.
+     *
+     * @return string test key
+     */
+    public function getTestKey()
+    {
+        return $this->getParameter('testKey');
+    }
+
+    /**
+     * Set the test key.
+     *
+     * @param string $value test key
+     *
+     * @return self
+     */
+    public function setTestKey($value)
+    {
+        return $this->setParameter('testKey', $value);
     }
 
     /**
@@ -158,15 +202,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * Calculates sign for the $data.
      *
      * @param array $data
+     * @param string $signKey
      * @return string
      */
-    public function calculateSign($data)
+    public function calculateSign($data, $signKey)
     {
         unset($data['ik_sign']);
         ksort($data, SORT_STRING);
-        array_push($data, $this->getSecret());
+        array_push($data, $signKey);
+        $signAlgorithm = $this->getSignAlgorithm();
         $signString = implode(':', $data);
-        $sign = base64_encode(hash('sha256', $signString, true));
-        return $sign;
+        return base64_encode(hash($signAlgorithm, $signString, true));
     }
 }
