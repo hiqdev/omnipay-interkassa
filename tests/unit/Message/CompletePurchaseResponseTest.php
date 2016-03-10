@@ -28,7 +28,7 @@ class CompletePurchaseResponseTest extends TestCase
     protected $amount = '5.12';
     protected $currency = 'USD';
     protected $state = 'success';
-    protected $sign = '3Ra3gDluuAKUoGddlJTfrTJrQpjQHqbAbkUKB5k11y0=';
+    protected $sign = 'CwbLEwwevJc/5TyOTfIPDXMfIfXP5tPjWkUDX98bAug=';
     protected $time = '2015-12-17 17:36:13';
 
     /**
@@ -44,8 +44,7 @@ class CompletePurchaseResponseTest extends TestCase
             'ik_pw_via' => $this->payway,
             'ik_am' => $this->amount,
             'ik_cur' => $this->currency,
-            'ik_inv_id' => $this->invoiceId,
-            'ik_trn_id' => $this->transactionId,
+            'ik_inv_id' => $this->transactionId,
             'ik_inv_st' => $this->state,
             'ik_inv_prc' => $this->time,
             'ik_sign' => $this->sign,
@@ -68,7 +67,7 @@ class CompletePurchaseResponseTest extends TestCase
     public function testStateException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
-        $this->createRequest(['ik_inv_st' => 'fail', 'ik_sign' => 'iVRccLMwsoTVEgXMMn+flZAus3dgIGgvB6orib5fAKk='])->send();
+        $this->createRequest(['ik_inv_st' => 'fail', 'ik_sign' => 'ElWhUp/CjjSXF0ZjNIKbOk+WjpQ9/KIeowD0TjTshw0='])->send();
     }
 
     public function testSuccess()
