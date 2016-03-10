@@ -23,7 +23,9 @@ class CompletePurchaseRequestTest extends TestCase
     protected $request;
 
     protected $purse = '887ac1234c1eeee1488b156b';
-    protected $secret = 'Zp2zfdSJzbS61L32';
+    protected $signAlgorithm = 'sha256';
+    protected $signKey = 'Zp2zfdSJzbS61L32';
+    protected $testKey = 'W0b98idvHeKY2h3w';
     protected $description = 'Test Transaction long description';
     protected $transactionId = 'ID_123456';
     protected $amount = '1465.01';
@@ -50,7 +52,8 @@ class CompletePurchaseRequestTest extends TestCase
         $this->request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $this->request->initialize([
             'purse' => $this->purse,
-            'secret' => $this->secret,
+            'signAlgorithm' => $this->signAlgorithm,
+            'signKey' => $this->signKey,
         ]);
     }
 
@@ -71,5 +74,36 @@ class CompletePurchaseRequestTest extends TestCase
         $data = $this->request->getData();
         $response = $this->request->sendData($data);
         $this->assertSame('Omnipay\InterKassa\Message\CompletePurchaseResponse', get_class($response));
+    }
+
+    public function testTestMode()
+    {
+        $httpRequest = new HttpRequest([], [
+            'ik_co_id' => $this->purse,
+            'ik_trn_id' => $this->transactionId,
+            'ik_desc' => $this->description,
+            'ik_am' => $this->amount,
+            'ik_cur' => $this->currency,
+            'ik_inv_prc' => $this->time,
+            'ik_sign' => $this->sign,
+            'ik_inv_st' => $this->state,
+        ]);
+
+        $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
+        $request->initialize([
+            'testMode' => true,
+            'purse' => $this->purse,
+            'signAlgorithm' => $this->signAlgorithm,
+            'testKey' => $this->testKey,
+        ]);
+
+        $data = $request->getData();
+
+        $this->assertSame($this->purse, $data['ik_co_id']);
+        $this->assertSame($this->transactionId, $data['ik_trn_id']);
+        $this->assertSame($this->description, $data['ik_desc']);
+        $this->assertSame($this->amount, $data['ik_am']);
+        $this->assertSame($this->currency, $data['ik_cur']);
+        $this->assertSame($this->time, $data['ik_inv_prc']);
     }
 }

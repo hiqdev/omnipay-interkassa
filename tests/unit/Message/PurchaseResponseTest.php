@@ -23,7 +23,9 @@ class PurchaseResponseTest extends TestCase
     protected $request;
 
     protected $purse = '887ac1234c1eeee1488b156b';
-    protected $secret = 'Zp2zfdSJzbS61L32';
+    protected $signAlgorithm = 'sha256';
+    protected $signKey = 'Zp2zfdSJzbS61L32';
+    protected $testKey = 'W0b98idvHeKY2h3w';
     protected $returnUrl = 'https://www.example.com/success';
     protected $cancelUrl = 'https://www.example.com/failure';
     protected $notifyUrl = 'https://www.example.com/notify';
@@ -45,7 +47,9 @@ class PurchaseResponseTest extends TestCase
         $this->request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
         $this->request->initialize([
             'purse' => $this->purse,
-            'secret' => $this->secret,
+            'signAlgorithm' => $this->signAlgorithm,
+            'signKey' => $this->signKey,
+            'testKey' => $this->testKey,
             'returnUrl' => $this->returnUrl,
             'cancelUrl' => $this->cancelUrl,
             'notifyUrl' => $this->notifyUrl,

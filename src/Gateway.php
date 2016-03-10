@@ -33,9 +33,11 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
-            'purse' => '',
-            'secret'  => '',
-            'testMode'   => false,
+            'checkoutId'    => '',
+            'signAlgorithm' => 'sha256',
+            'signKey'       => '',
+            'testKey'       => '',
+            'testMode'      => false,
         ];
     }
 
@@ -83,25 +85,69 @@ class Gateway extends AbstractGateway
     }
 
     /**
-     * Get the secret key.
+     * Get the sign algorithm.
      *
-     * @return string secret
+     * @return string sign algorithm
      */
-    public function getSecret()
+    public function getSignAlgorithm()
     {
-        return $this->getParameter('secret');
+        return $this->getParameter('signAlgorithm');
     }
 
     /**
-     * Set the secret.
+     * Set the sign algorithm.
      *
-     * @param string $value secret
+     * @param string $value sign algorithm
      *
      * @return self
      */
-    public function setSecret($value)
+    public function setSignAlgorithm($value)
     {
-        return $this->setParameter('secret', $value);
+        return $this->setParameter('signAlgorithm', $value);
+    }
+
+    /**
+     * Get the sign key.
+     *
+     * @return string sign key
+     */
+    public function getSignKey()
+    {
+        return $this->getParameter('signKey');
+    }
+
+    /**
+     * Set the sign key.
+     *
+     * @param string $value sign key
+     *
+     * @return self
+     */
+    public function setSignKey($value)
+    {
+        return $this->setParameter('signKey', $value);
+    }
+
+    /**
+     * Get the test key.
+     *
+     * @return string test key
+     */
+    public function getTestKey()
+    {
+        return $this->getParameter('testKey');
+    }
+
+    /**
+     * Set the test key.
+     *
+     * @param string $value test key
+     *
+     * @return self
+     */
+    public function setTestKey($value)
+    {
+        return $this->setParameter('testKey', $value);
     }
 
     /**

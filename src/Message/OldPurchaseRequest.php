@@ -22,7 +22,7 @@ class OldPurchaseRequest extends AbstractRequest
      */
     public function getBaggageFields()
     {
-        return $this->getCurrency() . ' ' . $this->username;
+        return $this->getCurrency();
     }
 
     /**
