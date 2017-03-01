@@ -21,7 +21,7 @@ class PurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('checkoutId', 'signKey', 'amount', 'currency', 'description', 'transactionId');
+        $this->validate('checkoutId', 'amount', 'currency', 'description', 'transactionId');
 
         $return = [
             'ik_co_id'          => $this->getCheckoutId(),
