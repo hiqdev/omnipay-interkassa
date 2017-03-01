@@ -51,6 +51,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
 
         $request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
+            'checkoutId' => $stub->purse,
             'signAlgorithm' => $stub->signAlgorithm,
             'signKey' => $stub->signKey,
         ]);
@@ -61,13 +62,20 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     public function testSignException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Failed to validate signature');
-        $this->createRequest(['ik_wtf' => ':)'])->send();
+        $this->createRequest([
+            'ik_shop_id' => $this->stub->purse,
+            'ik_wtf' => ':)',
+        ])->send();
     }
 
     public function testStateException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
-        $this->createRequest(['ik_payment_state' => 'fail', 'ik_sign_hash' => 'IL/KyMotmW5XeL2g86kYGlVJXOYTO+HAsuSzudI0qHE='])->send();
+        $this->createRequest([
+            'ik_shop_id' => $this->stub->purse,
+            'ik_payment_state' => 'fail',
+            'ik_sign_hash' => 'IL/KyMotmW5XeL2g86kYGlVJXOYTO+HAsuSzudI0qHE=',
+        ])->send();
     }
 
     public function testSuccess()
@@ -82,7 +90,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
         $this->assertSame($stub->transactionId, $response->getTransactionReference());
         $this->assertSame($stub->amount, $response->getAmount());
         $this->assertSame($stub->currency, $response->getCurrency());
-        $this->assertSame($stub->timestamp, $response->getTime());
+        $this->assertSame(strtotime($stub->time)-3*60*60, strtotime($response->getTime()));
         $this->assertSame($stub->payway, $response->getPayer());
         $this->assertSame($stub->state, $response->getState());
         $this->assertSame($stub->sign, $response->getSign());

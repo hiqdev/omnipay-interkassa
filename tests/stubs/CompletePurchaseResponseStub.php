@@ -26,5 +26,4 @@ class CompletePurchaseResponseStub
     public $state = 'success';
     public $sign = 'CwbLEwwevJc/5TyOTfIPDXMfIfXP5tPjWkUDX98bAug=';
     public $time = '2015-12-17 17:36:13';
-    public $timestamp = 1450362973;
 }

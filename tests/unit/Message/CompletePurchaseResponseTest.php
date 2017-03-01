@@ -53,6 +53,7 @@ class CompletePurchaseResponseTest extends TestCase
 
         $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
+            'checkoutId' => $stub->purse,
             'signAlgorithm' => $stub->signAlgorithm,
             'signKey' => $stub->signKey,
         ]);
@@ -63,13 +64,20 @@ class CompletePurchaseResponseTest extends TestCase
     public function testSignException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Failed to validate signature');
-        $this->createRequest(['ik_wtf' => ':)'])->send();
+        $this->createRequest([
+            'ik_co_id' => $this->stub->purse,
+            'ik_wtf' => ':)',
+        ])->send();
     }
 
     public function testStateException()
     {
         $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
-        $this->createRequest(['ik_inv_st' => 'fail', 'ik_sign' => 'ElWhUp/CjjSXF0ZjNIKbOk+WjpQ9/KIeowD0TjTshw0='])->send();
+        $this->createRequest([
+            'ik_co_id' => $this->stub->purse,
+            'ik_inv_st' => 'fail',
+            'ik_sign' => 'ElWhUp/CjjSXF0ZjNIKbOk+WjpQ9/KIeowD0TjTshw0=',
+        ])->send();
     }
 
     public function testSuccess()
@@ -84,7 +92,7 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame($stub->transactionId, $response->getTransactionReference());
         $this->assertSame($stub->amount, $response->getAmount());
         $this->assertSame($stub->currency, $response->getCurrency());
-        $this->assertSame($stub->timestamp, $response->getTime());
+        $this->assertSame(strtotime($stub->time)-3*60*60, strtotime($response->getTime()));
         $this->assertSame($stub->payway, $response->getPayer());
         $this->assertSame($stub->state, $response->getState());
         $this->assertSame($stub->sign, $response->getSign());
