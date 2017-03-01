@@ -33,7 +33,8 @@ class CompletePurchaseRequest extends AbstractRequest
         }
 
         $result = [];
-        foreach ($this->httpRequest->request->all() as $key => $parameter) {
+        $vars = array_merge($this->httpRequest->query->all(), $this->httpRequest->request->all());
+        foreach ($vars as $key => $parameter) {
             if (strpos($key, 'ik_') === 0) {
                 $result[$key] = $parameter;
             }
