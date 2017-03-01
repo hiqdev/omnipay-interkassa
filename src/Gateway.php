@@ -34,7 +34,7 @@ class Gateway extends AbstractGateway
     {
         return [
             'checkoutId'    => '',
-            'signAlgorithm' => 'sha256',
+            'signAlgorithm' => 'md5',
             'signKey'       => '',
             'testKey'       => '',
             'testMode'      => false,
