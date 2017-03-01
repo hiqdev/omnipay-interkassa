@@ -212,6 +212,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         array_push($data, $signKey);
         $signAlgorithm = $this->getSignAlgorithm();
         $signString = implode(':', $data);
+
         return base64_encode(hash($signAlgorithm, $signString, true));
     }
 }

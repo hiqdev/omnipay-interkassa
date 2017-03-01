@@ -36,8 +36,12 @@ class CompletePurchaseResponse extends AbstractResponse
         $signKey = $this->request->getTestMode() ? $this->request->getTestKey() : $this->request->getSignKey();
         $signExpected = $this->request->calculateSign($this->data, $signKey);
 
+        if ($this->getCheckoutId() !== $this->request->getCheckoutId()) {
+            throw new InvalidResponseException('Wrong checkout ID');
+        }
+
         if ($this->getSign() !== $signExpected) {
-            throw new InvalidResponseException('Failed to validate signature: ' . $signExpected);
+            throw new InvalidResponseException('Failed to validate signature');
         }
 
         if ($this->getState() !== 'success') {
@@ -103,7 +107,6 @@ class CompletePurchaseResponse extends AbstractResponse
 
     /**
      * The currency of the payment.
-     *
      * @return string
      */
     public function getCurrency()
@@ -119,7 +122,7 @@ class CompletePurchaseResponse extends AbstractResponse
     public function getTime()
     {
         $date = new \DateTime($this->data['ik_inv_prc'], new \DateTimeZone('Europe/Moscow'));
-        return $date->getTimestamp();
+        return $date->format('c');
     }
 
     /**
