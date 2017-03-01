@@ -6,8 +6,8 @@ Omnipay: InterKassa
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Build Status](https://img.shields.io/travis/hiqdev/omnipay-interkassa.svg)](https://travis-ci.org/hiqdev/omnipay-interkassa)
-[![Code Coverage](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/?branch=master)
+[![Scrutinizer Code Coverage](https://img.shields.io/scrutinizer/coverage/g/hiqdev/omnipay-interkassa.svg)](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/hiqdev/omnipay-interkassa.svg)](https://scrutinizer-ci.com/g/hiqdev/omnipay-interkassa/)
 [![Dependency Status](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
@@ -59,4 +59,4 @@ or better yet, fork the library and submit a pull request.
 This project is released under the terms of the MIT [license](LICENSE).
 Read more [here](http://choosealicense.com/licenses/mit).
 
-Copyright © 2015-2016, HiQDev (http://hiqdev.com/)
+Copyright © 2015-2017, HiQDev (http://hiqdev.com/)

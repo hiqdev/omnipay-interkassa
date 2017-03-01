@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * InterKassa driver for the Omnipay PHP payment processing library
  *
  * @link      https://github.com/hiqdev/omnipay-interkassa
  * @package   omnipay-interkassa
  * @license   MIT
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace Omnipay\InterKassa;
@@ -64,7 +63,7 @@ class Gateway extends AbstractGateway
 
     /**
      * Get the unified secret.
-     * @return string merchant secret - sign key.
+     * @return string merchant secret - sign key
      */
     public function getSecret()
     {
@@ -73,7 +72,7 @@ class Gateway extends AbstractGateway
 
     /**
      * Set the unified secret.
-     * @param string $value merchant secret - sign key.
+     * @param string $value merchant secret - sign key
      * @return self
      */
     public function setSecret($value)

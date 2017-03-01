@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * InterKassa driver for the Omnipay PHP payment processing library
  *
  * @link      https://github.com/hiqdev/omnipay-interkassa
  * @package   omnipay-interkassa
  * @license   MIT
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace Omnipay\InterKassa\Tests\Message;
@@ -48,7 +47,6 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
             'ik_payment_state' => $stub->state,
             'ik_trans_id' => $stub->transactionId,
             'ik_paysystem_alias' => $stub->payway,
-
         ], $options));
 
         $request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);

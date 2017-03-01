@@ -12,6 +12,6 @@ package:
 
         This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
 
-require:
+plugins:
     hiqdev/hidev-php:    "*"
-    hiqdev/hidev-vendor: "*"
+    hiqdev/hidev-hiqdev: "*"
