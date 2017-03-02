@@ -1,6 +1,6 @@
 # hiqdev/omnipay-interkassa
 
-## [Under development]
+## [0.1.0] - 2017-03-01
 
 - Changed default algorithm to `md5`
     - [98d80e8] 2017-03-01 changed default algorithm to `md5` [@hiqsol]
@@ -14,9 +14,9 @@
     - [19ad484] 2017-03-01 added getting both GET and POST vars into CompletePurchaseRequest [@hiqsol]
     - [9fbca51] 2016-03-11 Enhanced tests design [@SilverFire]
     - [1b7afa5] 2016-03-10 Merge pull request #3 from dercoder/master [@SilverFire]
-    - [394d0ee] 2016-03-10 Merge remote-tracking branch 'origin/master' [alexander.fedra@gmail.com]
-    - [abe3c6d] 2016-03-10 Test mode feature added [alexander.fedra@gmail.com]
-    - [50bc536] 2016-03-10 Test mode feature added [alexander.fedra@gmail.com]
+    - [394d0ee] 2016-03-10 Merge remote-tracking branch 'origin/master' [@dercoder]
+    - [abe3c6d] 2016-03-10 Test mode feature added [@dercoder]
+    - [50bc536] 2016-03-10 Test mode feature added [@dercoder]
     - [1368089] 2016-03-10 CompletePurchaseResponse::getTransactionReference() returns `ik_inv_id` istead of `ik_trn_id` [@SilverFire]
     - [058bbc5] 2016-03-10 Adjusted tests [@SilverFire]
     - [de874bd] 2016-03-10 OldCompletePurchaseResponse::getTransactionId() returns `ik_payment_id` instead of `ik_trans_id` getTransactionReference() returns `ik_trans_id` instead of `ik_payment_id` [@SilverFire]
@@ -49,6 +49,8 @@
 
 ## [Development started] - 2015-10-23
 
+[@dercoder]: https://github.com/dercoder
+[alexander.fedra@gmail.com]: https://github.com/dercoder
 [@hiqsol]: https://github.com/hiqsol
 [sol@hiqdev.com]: https://github.com/hiqsol
 [@SilverFire]: https://github.com/SilverFire
@@ -97,3 +99,4 @@
 [de874bd]: https://github.com/hiqdev/omnipay-interkassa/commit/de874bd
 [6731ed2]: https://github.com/hiqdev/omnipay-interkassa/commit/6731ed2
 [Under development]: https://github.com/hiqdev/omnipay-interkassa/releases
+[0.1.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/0.1.0
