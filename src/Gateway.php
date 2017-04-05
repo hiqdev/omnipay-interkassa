@@ -206,6 +206,6 @@ class Gateway extends AbstractGateway
      */
     public function isOldApi()
     {
-        return strpos($this->getPurse(), '-');
+        return strpos($this->getPurse(), '-') !== false;
     }
 }
