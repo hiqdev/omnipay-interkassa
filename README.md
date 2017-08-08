@@ -1,5 +1,4 @@
-Omnipay: InterKassa
-===================
+# Omnipay: InterKassa
 
 **InterKassa driver for the Omnipay PHP payment processing library**
 
