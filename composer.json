@@ -45,10 +45,10 @@
         }
     ],
     "require": {
-        "omnipay/common": "~2.3"
+        "omnipay/common": "^3.0"
     },
     "require-dev": {
-        "omnipay/tests": "~2.0",
+        "omnipay/tests": "^3.0",
         "hiqdev/hidev-php": "*",
         "hiqdev/hidev-hiqdev": "*"
     },

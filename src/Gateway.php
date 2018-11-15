@@ -11,6 +11,10 @@
 namespace Omnipay\InterKassa;
 
 use Omnipay\Common\AbstractGateway;
+use Omnipay\InterKassa\Message\OldPurchaseRequest;
+use Omnipay\InterKassa\Message\PurchaseRequest;
+use Omnipay\InterKassa\Message\OldCompletePurchaseRequest;
+use Omnipay\InterKassa\Message\CompletePurchaseRequest;
 
 /**
  * Gateway for InterKassa Shop Cart Interface.
@@ -176,9 +180,9 @@ class Gateway extends AbstractGateway
     public function purchase(array $parameters = [])
     {
         if ($this->isOldApi()) {
-            $requestClass = '\Omnipay\InterKassa\Message\OldPurchaseRequest';
+            $requestClass = OldPurchaseRequest::class;
         } else {
-            $requestClass = '\Omnipay\InterKassa\Message\PurchaseRequest';
+            $requestClass = PurchaseRequest::class;
         }
 
         return $this->createRequest($requestClass, $parameters);
@@ -192,9 +196,9 @@ class Gateway extends AbstractGateway
     public function completePurchase(array $parameters = [])
     {
         if ($this->isOldApi()) {
-            $requestClass = '\Omnipay\InterKassa\Message\OldCompletePurchaseRequest';
+            $requestClass = OldCompletePurchaseRequest::class;
         } else {
-            $requestClass = '\Omnipay\InterKassa\Message\CompletePurchaseRequest';
+            $requestClass = CompletePurchaseRequest::class;
         }
 
         return $this->createRequest($requestClass, $parameters);

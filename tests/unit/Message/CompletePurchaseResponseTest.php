@@ -15,6 +15,7 @@ use Omnipay\InterKassa\Message\CompletePurchaseResponse;
 use Omnipay\InterKassa\Stubs\CompletePurchaseResponseStub;
 use Omnipay\Tests\TestCase;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
+use Omnipay\Common\Exception\InvalidResponseException;
 
 class CompletePurchaseResponseTest extends TestCase
 {
@@ -63,7 +64,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testSignException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'Failed to validate signature');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Failed to validate signature');
         $this->createRequest([
             'ik_co_id' => $this->stub->purse,
             'ik_wtf' => ':)',
@@ -72,7 +74,8 @@ class CompletePurchaseResponseTest extends TestCase
 
     public function testStateException()
     {
-        $this->setExpectedException('Omnipay\Common\Exception\InvalidResponseException', 'The payment was not success');
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('The payment was not success');
         $this->createRequest([
             'ik_co_id' => $this->stub->purse,
             'ik_inv_st' => 'fail',
