@@ -48,7 +48,6 @@ class PurchaseResponseTest extends TestCase
             'amount' => $stub->amount,
             'currency' => $stub->currency,
             'returnMethod' => $stub->returnMethod,
-            'successMethod' => $stub->successMethod,
             'cancelMethod' => $stub->cancelMethod,
             'notifyMethod' => $stub->notifyMethod,
         ]);
@@ -76,7 +75,7 @@ class PurchaseResponseTest extends TestCase
             'ik_pnd_u' => $stub->returnUrl,
             'ik_pnd_m' => $stub->returnMethod,
             'ik_suc_u' => $stub->returnUrl,
-            'ik_suc_m' => $stub->successMethod,
+            'ik_suc_m' => $stub->returnMethod,
             'ik_fal_u' => $stub->cancelUrl,
             'ik_fal_m' => $stub->cancelMethod,
             'ik_ia_u' => $stub->notifyUrl,

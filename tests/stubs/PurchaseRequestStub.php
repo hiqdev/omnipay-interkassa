@@ -24,7 +24,6 @@ class PurchaseRequestStub
     public $amount = '14.65';
     public $currency = 'USD';
     public $returnMethod = 'GET';
-    public $successMethod = 'POST';
     public $cancelMethod = 'OPTIONS';
     public $notifyMethod = 'PUT';
 }

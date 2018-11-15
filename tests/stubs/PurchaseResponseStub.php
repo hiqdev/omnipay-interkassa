@@ -23,10 +23,9 @@ class PurchaseResponseStub
     public $transactionId = 'ID_123456';
     public $amount = '14.65';
     public $currency = 'USD';
-    public $sign = 'C5sYWKMUZF1SDPTAGosZntOLC8Q2WWNvxx4bwy/gIwc=';
+    public $sign = 'USSIBWVpztsCDwP3fZcTOsQLdwUaI9CryGjU1sZalbI=';
     public $sci = 'https://sci.interkassa.com/';
     public $returnMethod = 'GET';
-    public $successMethod = 'POST';
     public $cancelMethod = 'OPTIONS';
     public $notifyMethod = 'PUT';
 }
