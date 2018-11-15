@@ -1,6 +1,21 @@
 # hiqdev/omnipay-interkassa
 
-## [0.1.0] - 2017-03-01
+## [3.0] - 2018-11-15
+
+- Upgraded to OmniPay v.3
+    - [1571974] 2018-11-15 Fixed mistakes in tests [@SilverFire]
+    - [fdda435] 2018-11-15 Upgraded to OmniPay v3 [@SilverFire]
+
+## [0.1.1] - 2018-11-15
+
+    - [870c101] 2017-08-08 csfixed [@hiqsol]
+    - [d725a3c] 2017-08-08 csfixed [@hiqsol]
+    - [7177a58] 2017-08-08 renamed `hidev.yml` [@hiqsol]
+    - [c96a270] 2017-04-05 Merge pull request #6 from bladeroot/omnipay-interkassa-is-old [@hiqsol]
+    - [f5d12dc] 2017-04-05 fix statement [@BladeRoot]
+- Minor changes
+
+## [0.1.0] - 2017-03-02
 
 - Changed default algorithm to `md5`
     - [98d80e8] 2017-03-01 changed default algorithm to `md5` [@hiqsol]
@@ -98,5 +113,15 @@
 [058bbc5]: https://github.com/hiqdev/omnipay-interkassa/commit/058bbc5
 [de874bd]: https://github.com/hiqdev/omnipay-interkassa/commit/de874bd
 [6731ed2]: https://github.com/hiqdev/omnipay-interkassa/commit/6731ed2
-[Under development]: https://github.com/hiqdev/omnipay-interkassa/releases
+[Under development]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.1...HEAD
 [0.1.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/0.1.0
+[1571974]: https://github.com/hiqdev/omnipay-interkassa/commit/1571974
+[fdda435]: https://github.com/hiqdev/omnipay-interkassa/commit/fdda435
+[870c101]: https://github.com/hiqdev/omnipay-interkassa/commit/870c101
+[d725a3c]: https://github.com/hiqdev/omnipay-interkassa/commit/d725a3c
+[7177a58]: https://github.com/hiqdev/omnipay-interkassa/commit/7177a58
+[c96a270]: https://github.com/hiqdev/omnipay-interkassa/commit/c96a270
+[f5d12dc]: https://github.com/hiqdev/omnipay-interkassa/commit/f5d12dc
+[Development started]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.1...Development started
+[0.1.1]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.0...0.1.1
+[3.0]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.1...3.0
