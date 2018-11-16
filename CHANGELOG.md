@@ -1,6 +1,6 @@
 # hiqdev/omnipay-interkassa
 
-## [0.1.0] - 2017-03-01
+## [2.0] - 2017-03-02
 
 - Changed default algorithm to `md5` ([@hiqsol])
 - Added check for purse(checkout ID) not cheated ([@hiqsol])
@@ -9,6 +9,10 @@
 - Added basics ([@hiqsol])
 
 ## [Development started] - 2015-10-23
+
+## [0.1.1] - 2017-08-08
+
+## [0.1.0] - 2017-03-02
 
 [@dercoder]: https://github.com/dercoder
 [alexander.fedra@gmail.com]: https://github.com/dercoder
@@ -22,3 +26,6 @@
 [bladeroot@gmail.com]: https://github.com/BladeRoot
 [Under development]: https://github.com/hiqdev/omnipay-interkassa/releases
 [0.1.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/0.1.0
+[Development started]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.1...Development started
+[2.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/2.0
+[0.1.1]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.0...0.1.1

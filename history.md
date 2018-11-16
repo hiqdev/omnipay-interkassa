@@ -1,6 +1,6 @@
 # hiqdev/omnipay-interkassa
 
-## [0.1.0] - 2017-03-01
+## [2.0] - 2017-03-02
 
 - Changed default algorithm to `md5`
     - [98d80e8] 2017-03-01 changed default algorithm to `md5` [@hiqsol]
@@ -48,6 +48,16 @@
     - [b6b4c95] 2015-10-23 inited [@hiqsol]
 
 ## [Development started] - 2015-10-23
+
+## [0.1.1] - 2017-08-08
+
+    - [870c101] 2017-08-08 csfixed [@hiqsol]
+    - [d725a3c] 2017-08-08 csfixed [@hiqsol]
+    - [7177a58] 2017-08-08 renamed `hidev.yml` [@hiqsol]
+    - [c96a270] 2017-04-05 Merge pull request #6 from bladeroot/omnipay-interkassa-is-old [@hiqsol]
+    - [f5d12dc] 2017-04-05 fix statement [@BladeRoot]
+
+## [0.1.0] - 2017-03-02
 
 [@dercoder]: https://github.com/dercoder
 [alexander.fedra@gmail.com]: https://github.com/dercoder
@@ -100,3 +110,11 @@
 [6731ed2]: https://github.com/hiqdev/omnipay-interkassa/commit/6731ed2
 [Under development]: https://github.com/hiqdev/omnipay-interkassa/releases
 [0.1.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/0.1.0
+[870c101]: https://github.com/hiqdev/omnipay-interkassa/commit/870c101
+[d725a3c]: https://github.com/hiqdev/omnipay-interkassa/commit/d725a3c
+[7177a58]: https://github.com/hiqdev/omnipay-interkassa/commit/7177a58
+[c96a270]: https://github.com/hiqdev/omnipay-interkassa/commit/c96a270
+[f5d12dc]: https://github.com/hiqdev/omnipay-interkassa/commit/f5d12dc
+[Development started]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.1...Development started
+[2.0]: https://github.com/hiqdev/omnipay-interkassa/releases/tag/2.0
+[0.1.1]: https://github.com/hiqdev/omnipay-interkassa/compare/0.1.0...0.1.1
