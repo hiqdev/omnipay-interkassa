@@ -99,4 +99,9 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
         $this->assertSame($stub->state, $response->getState());
         $this->assertSame($stub->sign, $response->getSign());
     }
+
+    public function testGetPayerFallsBackToPaymentMethodWhenPwViaIsMissing()
+    {
+        $this->markTestSkipped('The v1 API has no ik_payment_method fallback; getPayer() always reads ik_paysystem_alias.');
+    }
 }

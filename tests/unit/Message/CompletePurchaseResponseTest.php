@@ -101,4 +101,33 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame($stub->state, $response->getState());
         $this->assertSame($stub->sign, $response->getSign());
     }
+
+    public function testGetPayerFallsBackToPaymentMethodWhenPwViaIsMissing()
+    {
+        $stub = $this->stub;
+
+        $httpRequest = new HttpRequest([], [
+            'ik_co_id' => $stub->purse,
+            'ik_pm_no' => $stub->payment_no,
+            'ik_desc' => $stub->description,
+            'ik_payment_method' => 'litecoin',
+            'ik_am' => $stub->amount,
+            'ik_cur' => $stub->currency,
+            'ik_inv_id' => $stub->transactionId,
+            'ik_inv_st' => $stub->state,
+            'ik_inv_prc' => $stub->time,
+            'ik_sign' => 'r0/D8fKTBtD0VmgV0SfLX96K/82ZFf2mO6rYRDs5RSc=',
+        ]);
+        $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
+        $request->initialize([
+            'checkoutId' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
+        ]);
+
+        /** @var CompletePurchaseResponse $response */
+        $response = $request->send();
+
+        $this->assertSame('litecoin', $response->getPayer());
+    }
 }
