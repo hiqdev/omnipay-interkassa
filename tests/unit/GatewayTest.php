@@ -5,7 +5,7 @@
  * @link      https://github.com/hiqdev/omnipay-interkassa
  * @package   omnipay-interkassa
  * @license   MIT
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2026, HiQDev (http://hiqdev.com/)
  */
 
 namespace Omnipay\InterKassa\Tests;
