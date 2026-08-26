@@ -45,12 +45,12 @@
         }
     ],
     "require": {
+        "php": ">=7.4",
         "omnipay/common": "^3.0"
     },
     "require-dev": {
-        "omnipay/tests": "^3.0",
-        "hiqdev/hidev-php": "*",
-        "hiqdev/hidev-hiqdev": "*"
+        "omnipay/tests": "^4.2",
+        "phpunit/phpunit": "^9.6 || ^10.5 || ^11.5"
     },
     "autoload": {
         "psr-4": {

@@ -27,7 +27,7 @@ class PurchaseResponseTest extends TestCase
      */
     private $stub;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

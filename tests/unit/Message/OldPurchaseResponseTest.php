@@ -26,7 +26,7 @@ class OldPurchaseResponseTest extends PurchaseResponseTest
      */
     private $stub;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -1,0 +1,35 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  PHPUnit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.3', '8.4', '8.5']
+    name: PHP ${{ matrix.php }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: composer:v2
+
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+      - name: Composer install
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer install -n
+
+      - run: vendor/bin/phpunit

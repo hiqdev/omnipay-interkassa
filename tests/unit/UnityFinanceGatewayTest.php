@@ -14,7 +14,7 @@ use Omnipay\InterKassa\UnityFinanceGateway;
 
 class UnityFinanceGatewayTest extends GatewayTest
 {
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

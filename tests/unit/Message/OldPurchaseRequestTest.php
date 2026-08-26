@@ -26,7 +26,7 @@ class OldPurchaseRequestTest extends TestCase
      */
     protected $request;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

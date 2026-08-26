@@ -26,7 +26,7 @@ class OldCompletePurchaseRequestTest extends CompletePurchaseRequestTest
      */
     protected $stub;
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

@@ -28,7 +28,7 @@ class GatewayTest extends GatewayTestCase
     protected $currency = 'USD';
     protected $amount = '12.46';
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
