@@ -37,10 +37,11 @@ class Gateway extends AbstractGateway
     {
         return [
             'checkoutId'    => '',
-            'signAlgorithm' => 'md5',
+            'signAlgorithm' => 'sha256',
             'signKey'       => '',
             'testKey'       => '',
             'testMode'      => false,
+            'endpoint'      => 'https://sci.interkassa.com/',
         ];
     }
 
@@ -170,6 +171,27 @@ class Gateway extends AbstractGateway
     public function setTestKey($value)
     {
         return $this->setParameter('testKey', $value);
+    }
+
+    /**
+     * Get the checkout form / PPI endpoint.
+     *
+     * @return string
+     */
+    public function getEndpoint()
+    {
+        return $this->getParameter('endpoint');
+    }
+
+    /**
+     * Set the checkout form / PPI endpoint.
+     *
+     * @param string $value
+     * @return self
+     */
+    public function setEndpoint($value)
+    {
+        return $this->setParameter('endpoint', $value);
     }
 
     /**

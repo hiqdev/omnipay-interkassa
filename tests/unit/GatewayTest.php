@@ -45,6 +45,19 @@ class GatewayTest extends GatewayTestCase
         $this->assertSame($this->testKey, $this->gateway->getTestKey());
     }
 
+    public function testDefaultSignAlgorithmIsSha256()
+    {
+        $this->assertSame('sha256', $this->gateway->getDefaultParameters()['signAlgorithm']);
+    }
+
+    public function testEndpoint()
+    {
+        $this->assertSame('https://sci.interkassa.com/', $this->gateway->getEndpoint());
+
+        $this->gateway->setEndpoint('https://old-pay.unityfinance.com');
+        $this->assertSame('https://old-pay.unityfinance.com', $this->gateway->getEndpoint());
+    }
+
     public function testCompletePurchase()
     {
         $request = $this->gateway->completePurchase([

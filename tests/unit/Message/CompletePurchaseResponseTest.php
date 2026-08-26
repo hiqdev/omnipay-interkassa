@@ -95,7 +95,8 @@ class CompletePurchaseResponseTest extends TestCase
         $this->assertSame($stub->transactionId, $response->getTransactionReference());
         $this->assertSame($stub->amount, $response->getAmount());
         $this->assertSame($stub->currency, $response->getCurrency());
-        $this->assertSame(strtotime($stub->time) - 3 * 60 * 60, strtotime($response->getTime()));
+        $expectedTime = new \DateTime($stub->time, new \DateTimeZone('Europe/Kyiv'));
+        $this->assertSame($expectedTime->format('c'), $response->getTime());
         $this->assertSame($stub->payway, $response->getPayer());
         $this->assertSame($stub->state, $response->getState());
         $this->assertSame($stub->sign, $response->getSign());

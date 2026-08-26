@@ -30,12 +30,8 @@ class PurchaseRequest extends AbstractRequest
             'ik_cur'            => $this->getCurrency(),
         ];
 
-        if ($ik_pnd_u = $this->getReturnUrl()) {
+        if ($ik_pnd_u = $this->getPendingUrl() ?: $this->getReturnUrl()) {
             $return['ik_pnd_u'] = $ik_pnd_u;
-
-            if ($ik_pnd_m = $this->getReturnMethod()) {
-                $return['ik_pnd_m'] = $ik_pnd_m;
-            }
         }
 
         if ($ik_suc_u = $this->getReturnUrl()) {
@@ -60,6 +56,10 @@ class PurchaseRequest extends AbstractRequest
             if ($ik_ia_m = $this->getNotifyMethod()) {
                 $return['ik_ia_m'] = $ik_ia_m;
             }
+        }
+
+        if ($ik_result_url = $this->getRedirectUrl()) {
+            $return['ik_result_url'] = $ik_result_url;
         }
 
         if ($signKey = $this->getSignKey()) {

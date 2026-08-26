@@ -73,7 +73,6 @@ class PurchaseResponseTest extends TestCase
             'ik_desc' => $stub->description,
             'ik_cur' => $stub->currency,
             'ik_pnd_u' => $stub->returnUrl,
-            'ik_pnd_m' => $stub->returnMethod,
             'ik_suc_u' => $stub->returnUrl,
             'ik_suc_m' => $stub->returnMethod,
             'ik_fal_u' => $stub->cancelUrl,
@@ -82,5 +81,27 @@ class PurchaseResponseTest extends TestCase
             'ik_ia_m' => $stub->notifyMethod,
             'ik_sign' => $stub->sign,
         ], $response->getRedirectData());
+    }
+
+    public function testRedirectUrlUsesRequestEndpoint()
+    {
+        $stub = $this->stub;
+
+        $request = new PurchaseRequest($this->getHttpClient(), $this->getHttpRequest());
+        $request->initialize([
+            'purse' => $stub->purse,
+            'signAlgorithm' => $stub->signAlgorithm,
+            'signKey' => $stub->signKey,
+            'description' => $stub->description,
+            'transactionId' => $stub->transactionId,
+            'amount' => $stub->amount,
+            'currency' => $stub->currency,
+            'endpoint' => 'https://old-pay.unityfinance.com',
+        ]);
+
+        /** @var PurchaseResponse $response */
+        $response = $request->send();
+
+        $this->assertSame('https://old-pay.unityfinance.com', $response->getRedirectUrl());
     }
 }

@@ -77,7 +77,7 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getTime()
     {
-        $date = new \DateTime($this->data['ik_payment_timestamp'], new \DateTimeZone('Europe/Moscow'));
+        $date = new \DateTime($this->data['ik_payment_timestamp'], new \DateTimeZone('Europe/Kyiv'));
         return $date->format('c');
     }
 

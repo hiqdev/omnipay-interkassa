@@ -58,6 +58,7 @@ class PurchaseRequestTest extends TestCase
 
         $this->assertSame($this->stub->purse, $data['ik_co_id']);
         $this->assertSame($this->stub->returnUrl, $data['ik_suc_u']);
+        $this->assertSame($this->stub->returnUrl, $data['ik_pnd_u']);
         $this->assertSame($this->stub->cancelUrl, $data['ik_fal_u']);
         $this->assertSame($this->stub->notifyUrl, $data['ik_ia_u']);
         $this->assertSame($this->stub->description, $data['ik_desc']);
@@ -65,9 +66,27 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame($this->stub->amount, $data['ik_am']);
         $this->assertSame($this->stub->currency, $data['ik_cur']);
         $this->assertSame($this->stub->returnMethod, $data['ik_suc_m']);
-        $this->assertSame($this->stub->returnMethod, $data['ik_pnd_m']);
         $this->assertSame($this->stub->cancelMethod, $data['ik_fal_m']);
         $this->assertSame($this->stub->notifyMethod, $data['ik_ia_m']);
+        $this->assertArrayNotHasKey('ik_pnd_m', $data);
+        $this->assertArrayNotHasKey('ik_result_url', $data);
+    }
+
+    public function testPendingUrlOverride()
+    {
+        $this->request->setPendingUrl('https://www.example.com/pending');
+        $data = $this->request->getData();
+
+        $this->assertSame('https://www.example.com/pending', $data['ik_pnd_u']);
+        $this->assertNotSame($data['ik_suc_u'], $data['ik_pnd_u']);
+    }
+
+    public function testRedirectUrl()
+    {
+        $this->request->setRedirectUrl('https://www.example.com/result');
+        $data = $this->request->getData();
+
+        $this->assertSame('https://www.example.com/result', $data['ik_result_url']);
     }
 
     public function testSendData()

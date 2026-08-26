@@ -19,11 +19,6 @@ use Omnipay\Common\Message\RedirectResponseInterface;
 class PurchaseResponse extends AbstractResponse implements RedirectResponseInterface
 {
     /**
-     * @var string URL to redirect client to payment system. Used when [[isRedirect]]
-     */
-    protected $_redirect = 'https://sci.interkassa.com/';
-
-    /**
      * Always returns `false`, because InterKassa always needs redirect
      * {@inheritdoc}
      */
@@ -46,7 +41,7 @@ class PurchaseResponse extends AbstractResponse implements RedirectResponseInter
      */
     public function getRedirectUrl()
     {
-        return $this->_redirect;
+        return $this->request->getEndpoint();
     }
 
     /**

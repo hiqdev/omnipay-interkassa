@@ -120,7 +120,7 @@ class CompletePurchaseResponse extends AbstractResponse
      */
     public function getTime()
     {
-        $date = new \DateTime($this->data['ik_inv_prc'], new \DateTimeZone('Europe/Moscow'));
+        $date = new \DateTime($this->data['ik_inv_prc'], new \DateTimeZone('Europe/Kyiv'));
         return $date->format('c');
     }
 

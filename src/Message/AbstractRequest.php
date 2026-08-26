@@ -21,9 +21,72 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     protected $zeroAmountAllowed = false;
 
     /**
-     * @var string
+     * Get the checkout form / PPI endpoint.
+     *
+     * @return string
      */
-    protected $endpoint = 'https://sci.interkassa.com/';
+    public function getEndpoint()
+    {
+        return $this->getParameter('endpoint') ?: 'https://sci.interkassa.com/';
+    }
+
+    /**
+     * Set the checkout form / PPI endpoint.
+     *
+     * @param string $value
+     * @return self
+     */
+    public function setEndpoint($value)
+    {
+        return $this->setParameter('endpoint', $value);
+    }
+
+    /**
+     * Get the pending payment redirect URL (`ik_pnd_u`).
+     *
+     * @return mixed
+     */
+    public function getPendingUrl()
+    {
+        return $this->getParameter('pendingUrl');
+    }
+
+    /**
+     * Set the pending payment redirect URL (`ik_pnd_u`).
+     *
+     * @param $value
+     * @return self
+     */
+    public function setPendingUrl($value)
+    {
+        return $this->setParameter('pendingUrl', $value);
+    }
+
+    /**
+     * Get the universal post-payment redirect URL (`ik_result_url`).
+     *
+     * Not to be confused with {@see PurchaseResponse::getRedirectUrl()}, which returns the
+     * gateway's own form-POST endpoint. This is the merchant-supplied URL the payer is sent
+     * back to after payment in Host-to-Host mode (docs §3.3.2, Scenario 1) — the documented,
+     * recommended alternative to `ik_pnd_u`.
+     *
+     * @return mixed
+     */
+    public function getRedirectUrl()
+    {
+        return $this->getParameter('redirectUrl');
+    }
+
+    /**
+     * Set the universal post-payment redirect URL (`ik_result_url`).
+     *
+     * @param $value
+     * @return self
+     */
+    public function setRedirectUrl($value)
+    {
+        return $this->setParameter('redirectUrl', $value);
+    }
 
     /**
      * Get the unified purse.
