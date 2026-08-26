@@ -1,16 +1,18 @@
 # Omnipay: InterKassa
 
-**InterKassa driver for the Omnipay PHP payment processing library**
+**InterKassa / UnityFinance driver for the Omnipay PHP payment processing library**
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/omnipay-interkassa/v/stable)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
 [![Total Downloads](https://poser.pugx.org/hiqdev/omnipay-interkassa/downloads)](https://packagist.org/packages/hiqdev/omnipay-interkassa)
-[![Build Status](https://img.shields.io/travis/hiqdev/omnipay-interkassa.svg)](https://travis-ci.org/hiqdev/omnipay-interkassa)
-[![Dependency Status](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master/badge.svg)](https://www.versioneye.com/php/hiqdev:omnipay-interkassa/dev-master)
+[![Tests](https://github.com/hiqdev/omnipay-interkassa/actions/workflows/tests.yml/badge.svg)](https://github.com/hiqdev/omnipay-interkassa/actions/workflows/tests.yml)
 
 [Omnipay](https://github.com/omnipay/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+.
+processing library for PHP.
 
-This package implements [InterKassa](http://interkassa.com/) support for Omnipay.
+This package implements [InterKassa](https://interkassa.com/) support for Omnipay, including its
+UnityFinance subcompany, which serves the same Checkout Protocol on a different domain.
+
+Requires PHP 7.4 or later.
 
 ## Installation
 
@@ -19,22 +21,26 @@ The preferred way to install this library is through [composer](http://getcompos
 Either run
 
 ```sh
-php composer.phar require "hiqdev/omnipay-interkassa"
+composer require hiqdev/omnipay-interkassa
 ```
 
 or add
 
 ```json
-"hiqdev/omnipay-interkassa": "*"
+"hiqdev/omnipay-interkassa": "^3.0"
 ```
 
 to the require section of your composer.json.
 
 ## Basic Usage
 
-The following gateway is provided by this package:
+The following gateways are provided by this package:
 
-* [InterKassa Shop Cart Interface](http://interkassa.com/)
+* `InterKassa` ([`Omnipay\InterKassa\Gateway`](src/Gateway.php)) — the InterKassa Checkout
+  Protocol, form-posting to `https://sci.interkassa.com/`.
+* `UnityFinance` ([`Omnipay\InterKassa\UnityFinanceGateway`](src/UnityFinanceGateway.php)) — the
+  same protocol for the UnityFinance subcompany, form-posting to
+  `https://old-pay.unityfinance.com`.
 
 For general usage instructions, please see the main [Omnipay](https://github.com/omnipay/omnipay) repository.
 
@@ -56,4 +62,4 @@ or better yet, fork the library and submit a pull request.
 This project is released under the terms of the MIT [license](LICENSE).
 Read more [here](http://choosealicense.com/licenses/mit).
 
-Copyright © 2015-2017, HiQDev (http://hiqdev.com/)
+Copyright © 2015-2026, HiQDev (http://hiqdev.com/)
