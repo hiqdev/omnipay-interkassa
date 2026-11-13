@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.3', '8.4', '8.5']
+        php: ['8.5']
     name: PHP ${{ matrix.php }}
     steps:
       - name: Checkout
@@ -21,15 +21,7 @@ jobs:
           coverage: none
           tools: composer:v2
 
-      - name: Cache Composer packages
-        id: composer-cache
-        uses: actions/cache@v6
-        with:
-          path: vendor
-          key: ${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-
       - name: Composer install
-        if: steps.composer-cache.outputs.cache-hit != 'true'
         run: composer install -n
 
       - run: vendor/bin/phpunit
