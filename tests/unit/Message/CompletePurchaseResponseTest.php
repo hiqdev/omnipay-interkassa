@@ -10,7 +10,6 @@
 
 namespace Omnipay\InterKassa\Tests\Message;
 
-use ErrorException;
 use Omnipay\InterKassa\Message\CompletePurchaseRequest;
 use Omnipay\InterKassa\Message\CompletePurchaseResponse;
 use Omnipay\InterKassa\Stubs\CompletePurchaseResponseStub;
@@ -39,18 +38,7 @@ class CompletePurchaseResponseTest extends TestCase
     {
         parent::setUp();
 
-        set_error_handler(static function (int $severity, string $message, string $file, int $line): bool {
-            throw new ErrorException($message, 0, $severity, $file, $line);
-        }, E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-
         $this->stub = new CompletePurchaseResponseStub();
-    }
-
-    protected function tearDown(): void
-    {
-        restore_error_handler();
-
-        parent::tearDown();
     }
 
     /**
