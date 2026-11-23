@@ -10,6 +10,7 @@
 
 namespace Omnipay\InterKassa\Tests\Message;
 
+use ErrorException;
 use Omnipay\InterKassa\Message\CompletePurchaseRequest;
 use Omnipay\InterKassa\Message\CompletePurchaseResponse;
 use Omnipay\InterKassa\Stubs\CompletePurchaseResponseStub;
@@ -24,11 +25,32 @@ class CompletePurchaseResponseTest extends TestCase
      */
     protected $stub;
 
+    /**
+     * @var string
+     */
+    protected $checkoutIdField = 'ik_co_id';
+
+    /**
+     * @var string
+     */
+    protected $signField = 'ik_sign';
+
     protected function setUp(): void
     {
         parent::setUp();
 
+        set_error_handler(static function (int $severity, string $message, string $file, int $line): bool {
+            throw new ErrorException($message, 0, $severity, $file, $line);
+        }, E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+
         $this->stub = new CompletePurchaseResponseStub();
+    }
+
+    protected function tearDown(): void
+    {
+        restore_error_handler();
+
+        parent::tearDown();
     }
 
     /**
@@ -39,7 +61,7 @@ class CompletePurchaseResponseTest extends TestCase
     {
         $stub = $this->stub;
 
-        $httpRequest = new HttpRequest([], array_merge([
+        $httpRequest = new HttpRequest([], $this->withoutNulls(array_merge([
             'ik_co_id' => $stub->purse,
             'ik_pm_no' => $stub->payment_no,
             'ik_desc' => $stub->description,
@@ -50,7 +72,7 @@ class CompletePurchaseResponseTest extends TestCase
             'ik_inv_st' => $stub->state,
             'ik_inv_prc' => $stub->time,
             'ik_sign' => $stub->sign,
-        ], $options));
+        ], $options)));
 
         $request = new CompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
@@ -70,6 +92,31 @@ class CompletePurchaseResponseTest extends TestCase
             'ik_co_id' => $this->stub->purse,
             'ik_wtf' => ':)',
         ])->send();
+    }
+
+    /**
+     * @param array $fields
+     * @return array
+     */
+    protected function withoutNulls($fields)
+    {
+        return array_filter($fields, function ($value) {
+            return $value !== null;
+        });
+    }
+
+    public function testMissingCheckoutIdIsRejectedAsWrongCheckoutId()
+    {
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Wrong checkout ID');
+        $this->createRequest([$this->checkoutIdField => null])->send();
+    }
+
+    public function testMissingSignIsRejectedAsInvalidSignature()
+    {
+        $this->expectException(InvalidResponseException::class);
+        $this->expectExceptionMessage('Failed to validate signature');
+        $this->createRequest([$this->signField => null])->send();
     }
 
     public function testStateException()

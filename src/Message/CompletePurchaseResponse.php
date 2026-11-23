@@ -61,19 +61,19 @@ class CompletePurchaseResponse extends AbstractResponse
     /**
      * The checkout ID.
      *
-     * @return string
+     * @return string|null
      */
     public function getCheckoutId()
     {
-        return $this->data['ik_co_id'];
+        return $this->data['ik_co_id'] ?? null;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSign()
     {
-        return $this->data['ik_sign'];
+        return $this->data['ik_sign'] ?? null;
     }
 
     /**

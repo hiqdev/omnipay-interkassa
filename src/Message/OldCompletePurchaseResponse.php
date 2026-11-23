@@ -19,11 +19,11 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
     /**
      * The checkout ID.
      *
-     * @return string
+     * @return string|null
      */
     public function getCheckoutId()
     {
-        return $this->data['ik_shop_id'];
+        return $this->data['ik_shop_id'] ?? null;
     }
 
     /**
@@ -100,6 +100,6 @@ class OldCompletePurchaseResponse extends CompletePurchaseResponse
      */
     public function getSign()
     {
-        return $this->data['ik_sign_hash'];
+        return $this->data['ik_sign_hash'] ?? null;
     }
 }
