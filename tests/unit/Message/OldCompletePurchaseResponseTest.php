@@ -23,6 +23,10 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
      */
     protected $stub;
 
+    protected $checkoutIdField = 'ik_shop_id';
+
+    protected $signField = 'ik_sign_hash';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -38,7 +42,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
     {
         $stub = $this->stub;
 
-        $httpRequest = new HttpRequest([], array_merge([
+        $httpRequest = new HttpRequest([], $this->withoutNulls(array_merge([
             'ik_shop_id' => $stub->purse,
             'ik_payment_id' => $stub->payment_no,
             'ik_payment_desc' => $stub->description,
@@ -48,7 +52,7 @@ class OldCompletePurchaseResponseTest extends CompletePurchaseResponseTest
             'ik_payment_state' => $stub->state,
             'ik_trans_id' => $stub->transactionId,
             'ik_paysystem_alias' => $stub->payway,
-        ], $options));
+        ], $options)));
 
         $request = new OldCompletePurchaseRequest($this->getHttpClient(), $httpRequest);
         $request->initialize([
